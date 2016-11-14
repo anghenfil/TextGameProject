@@ -29,12 +29,18 @@ public class MainControl {
 			case "gehe":
 				commandGehe(input, room);
 				break;
+			case "character":
+				commandCharacterGUI();
+				break;
 			default:
 				TD.error();
 				break;
 			}
 		}
 		sc.close();
+	}
+	private static void commandCharacterGUI(){
+		System.out.println("Test");
 	}
 	private static void commandGehe(String[] input, Room room) {
 		if(Objects.equals(input[1], "nach")){
