@@ -35,6 +35,7 @@ public class TD {
 		AnsiConsole.systemInstall();
 		System.out.println(ansi().render("@|red "+ content + "|@"));
 		AnsiConsole.systemUninstall();
+		TD.input();
 	}public static void error(){
 		error("Deine Antwort konnte nicht erkannt werden. Bitte wiederhole deine Eingabe!");
 	}
