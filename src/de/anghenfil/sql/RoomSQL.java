@@ -1,7 +1,5 @@
 package de.anghenfil.sql;
 import java.sql.*;
-import java.util.Scanner;
-
 import de.anghenfil.mainmenu.MainMenu;
 import de.anghenfil.room.Room;
 

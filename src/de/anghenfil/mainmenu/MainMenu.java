@@ -1,16 +1,13 @@
 package de.anghenfil.mainmenu;
 import de.anghenfil.user.*;
 import de.anghenfil.editor.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
-
 import org.apache.commons.io.FileUtils;
-
 import de.anghenfil.textdesign.*;
 
 public class MainMenu {

@@ -1,8 +1,6 @@
 package de.anghenfil.maingame;
-
 import java.util.Objects;
 import java.util.Scanner;
-
 import de.anghenfil.room.Room;
 import de.anghenfil.sql.RoomSQL;
 import de.anghenfil.textdesign.TD;
@@ -87,6 +85,7 @@ public class MainControl {
 		exit = true;
 	}
 	public static void commandHelp(){
-		
+		TD.headline("Hilfe");
+		TD.description("Befehle:\ngehe nach osten/westen/sueden/norden\nexit\nende\nhelp\nhilfe");
 	}
 }

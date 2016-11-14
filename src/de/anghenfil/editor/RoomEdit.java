@@ -1,6 +1,5 @@
 package de.anghenfil.editor;
 import java.util.Scanner;
-
 import de.anghenfil.sql.RoomSQL;
 import de.anghenfil.textdesign.TD;
 
