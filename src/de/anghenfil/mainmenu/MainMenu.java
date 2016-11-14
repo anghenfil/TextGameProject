@@ -15,6 +15,7 @@ import de.anghenfil.textdesign.*;
 
 public class MainMenu {
 	static String path = System.getProperty("user.home")+"/AppData/Roaming/TextGameProject";
+	static File destDir = new File(System.getProperty("user.home")+"/AppData/Roaming/TextGameProject");
 	
 	public static void main(String[] args) {
 		boolean createnew; //True if no save file exists
@@ -22,7 +23,6 @@ public class MainMenu {
 		Path save = Paths.get(path);
 		Scanner sc = new Scanner(System.in);
 		File srcDir = new File("data/");
-		File destDir = new File(System.getProperty("user.home")+"/AppData/Roaming/TextGameProject");
 		
 		if(!Files.exists(save)){
 			System.out.println("Test");
@@ -55,8 +55,8 @@ public class MainMenu {
 		}
 		sc.close();
 	}
-	public static String getPath(){
-		return path;
+	public static File getPath(){
+		return destDir;
 	}
 
 }

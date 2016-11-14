@@ -12,7 +12,7 @@ public class RoomSQL {
 		Statement stmt = null;
 	    try {
 	        Class.forName("org.sqlite.JDBC");
-	        c = DriverManager.getConnection("jdbc:sqlite: "+MainMenu.getPath()+"rooms.db");
+			c = DriverManager.getConnection("jdbc:sqlite:"+MainMenu.getPath()+"\\rooms.db");
 	        
 	        stmt = c.createStatement();
 	        ResultSet rs = stmt.executeQuery("SELECT * FROM rooms"); //Change * later to the final columns
@@ -38,7 +38,7 @@ public class RoomSQL {
 		
 		try{
 		Class.forName("org.sqlite.JDBC");
-        c = DriverManager.getConnection("jdbc:sqlite: "+MainMenu.getPath()+"rooms.db");
+		c = DriverManager.getConnection("jdbc:sqlite:"+MainMenu.getPath()+"\\rooms.db");
         PreparedStatement ps = c.prepareStatement("INSERT INTO rooms (roomID, nextRoomE, nextRoomW, nextRoomN, nextRoomS, roomDescription) VALUES (?, ?, ?, ?, ?, ?)");
         ps.setInt(1, roomID);
         ps.setInt(2, nextRoomE);
@@ -57,10 +57,9 @@ public class RoomSQL {
 	public static boolean roomExist(int roomID){
 		boolean Roomexist = false;
 		Connection c = null;
-		
 		try{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite: "+MainMenu.getPath()+"rooms.db");
+			c = DriverManager.getConnection("jdbc:sqlite:"+MainMenu.getPath()+"\\rooms.db");
 			PreparedStatement ps = c.prepareStatement("SELECT * FROM rooms WHERE roomID = ?"); //Change * later to the final columns
 			ps.setInt(1, roomID);
 			ResultSet rs = ps.executeQuery();
