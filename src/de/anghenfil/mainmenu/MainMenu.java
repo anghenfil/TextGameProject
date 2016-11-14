@@ -3,27 +3,35 @@ import de.anghenfil.user.*;
 import de.anghenfil.editor.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
+
+import org.apache.commons.io.FileUtils;
+
 import de.anghenfil.textdesign.*;
 
 public class MainMenu {
-
+	static String path = System.getProperty("user.home")+"/AppData/Roaming/TextGameProject";
+	
 	public static void main(String[] args) {
 		boolean createnew; //True if no save file exists
 		String decision;
-		String path = System.getProperty("user.home")+"/AppData/Roaming/TextGameProject";
 		Path save = Paths.get(path);
 		Scanner sc = new Scanner(System.in);
-		File srcDir = new File("/data/");
+		File srcDir = new File("data/");
 		File destDir = new File(System.getProperty("user.home")+"/AppData/Roaming/TextGameProject");
-		FileUtils.copyDirectory(srcDir, destDir);
-		if(Files.exists(save)){
+		
+		if(!Files.exists(save)){
 			System.out.println("Test");
-		}else{
-			new File(path).mkdirs();
+			try{
+				FileUtils.copyDirectory(srcDir, destDir);
+			}catch(IOException e){
+					TD.error("Fatal Error. Can't copy Data Files."+e);
+					System.exit(0);
+			}
 		}
 		//Maybe later Swing GUI for starting game?
 		TD.input_question("Editor oder Spiel starten?");
@@ -46,6 +54,9 @@ public class MainMenu {
 			main(args);
 		}
 		sc.close();
+	}
+	public static String getPath(){
+		return path;
 	}
 
 }
