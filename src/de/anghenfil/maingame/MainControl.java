@@ -1,6 +1,8 @@
 package de.anghenfil.maingame;
 import java.util.Objects;
 import java.util.Scanner;
+
+import de.anghenfil.gui.Window;
 import de.anghenfil.room.Room;
 import de.anghenfil.sql.RoomSQL;
 import de.anghenfil.textdesign.TD;
@@ -9,17 +11,18 @@ public class MainControl {
 	static boolean exit = false;
 	static String rawinput;
 	static String[] input;
-	public static void checkInputs(Room room){
-		Scanner sc = new Scanner(System.in);
-		while(exit != true){
-			TD.input();
-			rawinput = sc.nextLine();
+	public static Room room;
+	public static void setRoom(Room roomi){
+		room = roomi;
+	}
+	public static void checkInputs(String rawinput){
 			rawinput = rawinput.toLowerCase();
 			input = rawinput.split("\\s");
 			switch(input[0]){
 			case "commands":
 			case "hilfe":
 			case "help":
+				window.addText("Test");
 				commandHelp();
 				break;
 			case "ende":
@@ -36,8 +39,6 @@ public class MainControl {
 				TD.error();
 				break;
 			}
-		}
-		sc.close();
 	}
 	private static void commandCharacterGUI(){
 		System.out.println("Test");
