@@ -1,6 +1,8 @@
 package de.anghenfil.mainmenu;
 import de.anghenfil.user.*;
 import de.anghenfil.editor.*;
+import de.anghenfil.maingame.MainGame;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -16,13 +18,12 @@ public class MainMenu {
 	
 	public static void main(String[] args) {
 		boolean createnew; //True if no save file exists
-		String decision;
+		String decision = null;
 		Path save = Paths.get(path);
 		Scanner sc = new Scanner(System.in);
 		File srcDir = new File("data/");
 		
 		if(!Files.exists(save)){
-			System.out.println("Test");
 			try{
 				FileUtils.copyDirectory(srcDir, destDir);
 			}catch(IOException e){
@@ -31,7 +32,7 @@ public class MainMenu {
 			}
 		}
 		//Maybe later Swing GUI for starting game?
-		TD.input_question("Editor oder Spiel starten?");
+		System.out.println("Editor oder Spiel starten?");
 		decision = sc.next();
 		decision = decision.toLowerCase(); //Making input lower case
 		switch(decision){
@@ -42,9 +43,9 @@ public class MainMenu {
 			createnew = UserManager.checkUserData(); //Check if User file already exists
 			if(createnew){ //If new user needed
 				UserManager.userCreation(); //Start User Creation
-				UserManager.loadUser(); //Load  User data (from User Creation) and start game
+				MainGame.play();//Start game
 			}else if(createnew == false){
-				UserManager.loadUser(); //Load User data and starts game
+				MainGame.play(); //Starts game
 			}
 			break;
 		default:

@@ -1,10 +1,7 @@
 package de.anghenfil.user;
-import static org.fusesource.jansi.Ansi.ansi;
-
 import java.io.*;
 import java.util.Scanner;
 import de.anghenfil.textdesign.TD;
-import de.anghenfil.maingame.*;
 
 public class UserManager {
 	public static boolean checkUserData(){
@@ -17,19 +14,20 @@ public class UserManager {
 			createnew = true;
 		}
 		return createnew;
-	}public static void loadUser(){
+	}public static User loadUser(){
 		InputStream loaddata = null;
+		User user = null;
 		try{
 			File dir = new File("TextGameProject");
 			dir.mkdir();
 			loaddata = new FileInputStream("TextGameProject/user");
 			ObjectInputStream loadObject = new ObjectInputStream(loaddata);
-			User user = (User) loadObject.readObject();
-			MainGame.play(user);
+			user = (User) loadObject.readObject();
 		}
 		catch ( IOException e ) { System.err.println( e ); }
 		catch ( ClassNotFoundException e ) { System.err.println( e ); }
 		finally { try { loaddata.close(); } catch ( Exception e ) { } }
+		return user; //Please confirm if its working
 	}static void createUser(String name, String rasse, String klasse){
 		User user = new User();
 		user.name = name;
@@ -50,22 +48,8 @@ public class UserManager {
 			user.ap = 50;
 			break;
 		}
-		saveUser(user);
+		user.saveUser();
 		
-	}
-	public static void saveUser(User user){
-		OutputStream savedata = null;
-
-		try
-		{
-		  File dir = new File("TextGameProject");
-		  dir.mkdir();
-		  savedata = new FileOutputStream("TextGameProject/user");
-		  ObjectOutputStream saveobject = new ObjectOutputStream(savedata);
-		  saveobject.writeObject(user);
-		}
-		catch ( IOException e ) { System.err.println( e ); }
-		finally { try { savedata.close(); } catch ( Exception e ) { e.printStackTrace(); } }
 	}
 	public static void userCreation(){
 		String name = null;
@@ -107,7 +91,6 @@ public class UserManager {
 				rasse_valid = true;
 				break;
 			default: TD.error();
-				TD.input();
 				break;
 			}
 		}
@@ -132,7 +115,6 @@ public class UserManager {
 				choise_valid = true;
 				break;
 			default: TD.error();
-				TD.input();
 				break;
 			}
 		}
@@ -156,7 +138,6 @@ public class UserManager {
 				klasse_valid = true;
 				break;
 			default: TD.error();
-			TD.input();
 			break;
 			}
 		}

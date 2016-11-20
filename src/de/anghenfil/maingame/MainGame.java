@@ -1,16 +1,30 @@
 package de.anghenfil.maingame;
 import de.anghenfil.user.*;
-import de.anghenfil.textdesign.*;
+import java.awt.EventQueue;
+
 import de.anghenfil.gui.Window;
 import de.anghenfil.room.Room;
-import de.anghenfil.sql.*;
+import de.anghenfil.sql.RoomSQL;
 
 public class MainGame {
-	public static void play(User user){
-		//TD.headline("The TextGame Project V0.1");
-		Window.main(null);
-		Room room = new Room();
-		room = RoomSQL.loadRoom(1); //Later load last room from user
-		MainControl.setRoom(room);
+	static Window window;
+	public static void play(){
+		User user = UserManager.loadUser();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Room room = new Room();
+					room = room.loadRoom(user.getAct_room());
+					window = new Window();
+					window.initialize();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
+	public static Window getWindow() {
+		return window;
+	}
+	
 }

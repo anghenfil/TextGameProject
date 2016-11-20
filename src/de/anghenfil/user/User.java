@@ -1,4 +1,9 @@
 package de.anghenfil.user;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 
 public class User implements Serializable{
@@ -11,7 +16,7 @@ public class User implements Serializable{
 	String rasse; //Character race
 	int health; //Actual Health
 	int ap; //Action Points -> = mana
-	int act_room; //Room where the player is
+	int act_room = 0; //Room where the player is
 	//Get and Set Methods:
 	public String getName() {
 		return name;
@@ -46,6 +51,19 @@ public class User implements Serializable{
 	public void setAct_room(int act_room) {
 		this.act_room = act_room;
 	}
+	public void saveUser(){
+		OutputStream savedata = null;
 
+		try
+		{
+		  File dir = new File("TextGameProject");
+		  dir.mkdir();
+		  savedata = new FileOutputStream("TextGameProject/user");
+		  ObjectOutputStream saveobject = new ObjectOutputStream(savedata);
+		  saveobject.writeObject(this);
+		}
+		catch ( IOException e ) { System.err.println( e ); }
+		finally { try { savedata.close(); } catch ( Exception e ) { e.printStackTrace(); } }
+	}
 	
 }

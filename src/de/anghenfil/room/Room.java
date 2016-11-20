@@ -1,5 +1,13 @@
 package de.anghenfil.room;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import de.anghenfil.mainmenu.MainMenu;
+
 public class Room {
 	private int roomID;
 	private int nextRoomN;
@@ -42,5 +50,32 @@ public class Room {
 	}
 	public void setNextRoomW(int nextRoomW) {
 		this.nextRoomW = nextRoomW;
+	}public Room loadRoom(int roomID){
+		Room room = new Room();
+		Connection c = null;
+		Statement stmt = null;
+	    try {
+	        Class.forName("org.sqlite.JDBC");
+			c = DriverManager.getConnection("jdbc:sqlite:"+MainMenu.getPath()+"\\rooms.db");
+	        
+	        stmt = c.createStatement();
+	        ResultSet rs = stmt.executeQuery("SELECT * FROM rooms"); //Change * later to the final columns
+	        while(rs.next()){
+	        	room.setRoomID(rs.getInt("roomID"));
+	        	room.setNextRoomE(rs.getInt("nextRoomE"));
+	        	room.setNextRoomW(rs.getInt("nextRoomW"));
+	        	room.setNextRoomN(rs.getInt("nextRoomN"));
+	        	room.setNextRoomS(rs.getInt("nextRoomS"));
+	        	room.setRoomDescription(rs.getString("roomDescription"));
+	        }
+	        rs.close();
+	        stmt.close();
+	        c.close();
+	      } catch ( Exception e ) {
+	        System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	        System.exit(0);
+	      }
+	    return room;
 	}
+
 }

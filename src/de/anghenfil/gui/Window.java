@@ -1,40 +1,25 @@
 package de.anghenfil.gui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
-import java.awt.Window.Type;
-import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JScrollPane;
-import java.awt.BorderLayout;
 import javax.swing.JTextPane;
-import javax.swing.JComboBox;
-import javax.swing.JPanel;
-import java.awt.GridLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JTextArea;
-import javax.swing.UIManager;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
-
-import java.awt.Component;
-import javax.swing.JEditorPane;
+import javax.swing.text.html.HTMLDocument;
+import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import de.anghenfil.maingame.MainControl;
+import de.anghenfil.textdesign.TD;
 
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.Insets;
-import javax.swing.JSplitPane;
-import javax.swing.JDesktopPane;
-import javax.swing.JToolBar;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 
 public class Window {
@@ -42,50 +27,38 @@ public class Window {
 	private JFrame frmTheTextgameprojectV;
 	private JTextField textField;
 	private JTextPane textPane;
-	public static JTextPane getTextPane() {
-		return window.textPane;
-	}
+	private HTMLEditorKit kit = new HTMLEditorKit();
+	private HTMLDocument doc = new HTMLDocument();
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Window window = new Window();
-					window.frmTheTextgameprojectV.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
 	 */
-	public Window() {
-		initialize();
-	}
+
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void initialize() {
 		frmTheTextgameprojectV = new JFrame();
 		frmTheTextgameprojectV.setPreferredSize(new Dimension(1280, 720));
 		frmTheTextgameprojectV.setTitle("The TextGameProject V.0.1");
 		frmTheTextgameprojectV.setBounds(100, 100, 784, 466);
 		frmTheTextgameprojectV.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		frmTheTextgameprojectV.setVisible(true);
 		JScrollPane scrollPane = new JScrollPane();
 		
 		textField = new JTextField();
 		textField.setMargin(new Insets(1, 1, 1, 1));
 		textField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainControl.checkInputs(textField.getText());
+				String input = textField.getText();
+				TD.input(input);
+				MainControl.checkInputs(input);
+				textField.setText(""); //Remove input in textfield after pressing enter
 			}
 		});
 		textField.setColumns(10);
@@ -116,10 +89,22 @@ public class Window {
 		);
 		
 		textPane = new JTextPane();
+		textPane.setContentType("text/html");
+		textPane.setEditorKit(kit);
+		textPane.setDocument(doc);
 		textPane.setMargin(new Insets(1, 1, 1, 1));
 		textPane.setEditable(false);
 		scrollPane.setViewportView(textPane);
+		scrollPane.setHorizontalScrollBarPolicy(31);
 		frmTheTextgameprojectV.getContentPane().setLayout(groupLayout);
 	}
-	
+	public void addText(String inhalt){
+		try {
+			kit.insertHTML(doc, doc.getLength(), inhalt, 0, 0, null);
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
