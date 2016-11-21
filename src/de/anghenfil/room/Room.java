@@ -9,12 +9,12 @@ import org.apache.commons.lang3.SystemUtils;
 import de.anghenfil.mainmenu.MainMenu;
 
 public class Room {
-	private int roomID;
-	private int nextRoomN;
-	private int nextRoomS;
-	private int nextRoomE;
-	private int nextRoomW;
-	private String roomDescription;
+	private int roomID = 0;
+	private int nextRoomN = 0;
+	private int nextRoomS = 0;
+	private int nextRoomE = 0;
+	private int nextRoomW = 0;
+	private String roomDescription = "unset";
 	public int getRoomID() {
 		return roomID;
 	}

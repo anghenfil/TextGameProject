@@ -32,7 +32,7 @@ public class MainControl {
 				commandGehe(window, input, room);
 				break;
 			default:
-				//TD.error(window);
+				TD.error();
 				break;
 			}
 	}
@@ -42,7 +42,7 @@ public class MainControl {
 				switch(input[2]){
 				case "norden":
 					if(room.getNextRoomN() == 0){
-						TD.error("In nördlicher Richtung geht es hier nicht weiter.");
+						TD.error("In nï¿½rdlicher Richtung geht es hier nicht weiter.");
 					}else{
 					window.addText("Gehe nach Norden ...");
 					room.loadRoom(room.getNextRoomN());
@@ -51,7 +51,7 @@ public class MainControl {
 					break;
 				case "sueden":
 					if(room.getNextRoomS() == 0){
-						TD.error("In südlicher Richtung geht es hier nicht weiter.");
+						TD.error("In sï¿½dlicher Richtung geht es hier nicht weiter.");
 					}else{
 					window.addText("Gehe nach SÃ¼den ...");
 					room.loadRoom(room.getNextRoomS());
@@ -69,7 +69,7 @@ public class MainControl {
 					break;
 				case "osten":
 					if(room.getNextRoomE() == 0){
-						TD.error("In östlicher Richtung geht es hier nicht weiter.");
+						TD.error("In ï¿½stlicher Richtung geht es hier nicht weiter.");
 					}else{
 					window.addText("Gehe nach Osten ...");
 					room.loadRoom(room.getNextRoomE());

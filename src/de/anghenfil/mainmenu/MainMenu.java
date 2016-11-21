@@ -31,7 +31,7 @@ public class MainMenu {
 					System.exit(0);
 			}
 		}
-		//Maybe later Swing GUI for starting game?
+		//Maybe later integrate start in GUI?
 		System.out.println("Editor oder Spiel starten?");
 		decision = sc.next();
 		decision = decision.toLowerCase(); //Making input lower case
