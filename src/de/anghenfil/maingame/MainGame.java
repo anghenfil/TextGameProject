@@ -15,9 +15,12 @@ public class MainGame {
 			public void run() {
 				try {
 					room = new Room();
-					room = room.loadRoom(user.getAct_room());
 					window = new Window();
+					
+					room = room.loadRoom(user.getAct_room()); //Load last visited Room from User object
 					window.initialize();
+					window.addText("Willkommen!"); //Welcome message
+					window.addText(room.getRoomDescription()); //Show actual room Description
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

@@ -6,7 +6,7 @@ import de.anghenfil.textdesign.TD;
 public class UserManager {
 	public static boolean checkUserData(){
 		boolean createnew = false;
-		
+		//TODO: Integrate APPDATA/.../ path
 		File datafile1 = new File("TextGameProject/user");
 		if(datafile1.exists() && !datafile1.isDirectory()){
 			createnew = false;
@@ -65,11 +65,11 @@ public class UserManager {
 		boolean klasse_valid = false;
 		
 		Scanner inputs = new Scanner(System.in); //Define Scanner for Inputs
-		TD.description("Langsam öffnest du die Augen und siehst dich um. Du liegst auf einem Bett und an der gegenüberliegenden Seite des Zimmers siehst du einen alten Mann an einer Feuerstelle stehen. Er dreht sich um und lächelt dich an. \n <<Ah, du bist aufgewacht! Nun, wer bist du?>>");
+		TD.description("Langsam ï¿½ffnest du die Augen und siehst dich um. Du liegst auf einem Bett und an der gegenï¿½berliegenden Seite des Zimmers siehst du einen alten Mann an einer Feuerstelle stehen. Er dreht sich um und lï¿½chelt dich an. \n <<Ah, du bist aufgewacht! Nun, wer bist du?>>");
 		TD.headline("Charaktererstellung");
 		
 		while(all_correct != true){
-		TD.input_question("Wie heißt du?");
+		TD.input_question("Wie heiï¿½t du?");
 		name = inputs.next();
 		TD.input_question("Hallo "+name+"! Bist du Mensch, Elf oder Halbelf?");
 		while(rasse_valid != true){
@@ -96,7 +96,7 @@ public class UserManager {
 		}
 		rasse_eingabe = null;
 		
-		TD.input_question("Alter Mann: <<Wie du ja sicher weißt, gibt es 3 verschiedene Klassen: Die Magier, die Priester und die Ritter. Jede Klasse hat besondere Eigenschaften und Vorteile. Möchtest du mehr darüber Wissen?>>");
+		TD.input_question("Alter Mann: <<Wie du ja sicher weiï¿½t, gibt es 3 verschiedene Klassen: Die Magier, die Priester und die Ritter. Jede Klasse hat besondere Eigenschaften und Vorteile. Mï¿½chtest du mehr darï¿½ber Wissen?>>");
 		while(choise_valid != true){
 			choise = inputs.next();
 			switch(choise){
@@ -118,7 +118,7 @@ public class UserManager {
 				break;
 			}
 		}
-		TD.input_question("Nun, welcher Klasse gehörst du an?");
+		TD.input_question("Nun, welcher Klasse gehï¿½rst du an?");
 		while(klasse_valid != true){
 			klasse_eingabe = inputs.next();
 			switch(klasse_eingabe){
