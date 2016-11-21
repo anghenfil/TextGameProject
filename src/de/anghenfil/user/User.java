@@ -16,7 +16,7 @@ public class User implements Serializable{
 	String rasse; //Character race
 	int health; //Actual Health
 	int ap; //Action Points -> = mana
-	int act_room = 0; //Room where the player is
+	int act_room = 1; //Room where the player is
 	//Get and Set Methods:
 	public String getName() {
 		return name;
