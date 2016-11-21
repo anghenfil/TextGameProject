@@ -9,13 +9,10 @@ public class MainControl {
 	static boolean exit = false;
 	static String rawinput;
 	static String[] input;
-	public static Room room;
-	//User user = UserManager.loadUser();
-	public static void setRoom(Room roomi){
-		room = roomi;
-	}
 	public static void checkInputs(String rawinput){
 			Window window = MainGame.getWindow();
+			Room room = MainGame.getRoom();
+			
 			rawinput = rawinput.toLowerCase();
 			input = rawinput.split("\\s");
 			switch(input[0]){
@@ -37,12 +34,14 @@ public class MainControl {
 			}
 	}
 	private static void commandGehe(Window window, String[] input, Room room) {
+		if(input.length <= 2){
+			TD.error("Wohin möchtest du gehen?");
+		}else{
 		if(Objects.equals(input[1], "nach")){
-			if(input.length > 2){
 				switch(input[2]){
 				case "norden":
 					if(room.getNextRoomN() == 0){
-						TD.error("In n�rdlicher Richtung geht es hier nicht weiter.");
+						TD.error("In nördlicher Richtung geht es hier nicht weiter.");
 					}else{
 					window.addText("Gehe nach Norden ...");
 					room.loadRoom(room.getNextRoomN());
@@ -51,7 +50,7 @@ public class MainControl {
 					break;
 				case "sueden":
 					if(room.getNextRoomS() == 0){
-						TD.error("In s�dlicher Richtung geht es hier nicht weiter.");
+						TD.error("In südlicher Richtung geht es hier nicht weiter.");
 					}else{
 					window.addText("Gehe nach Süden ...");
 					room.loadRoom(room.getNextRoomS());
@@ -69,7 +68,7 @@ public class MainControl {
 					break;
 				case "osten":
 					if(room.getNextRoomE() == 0){
-						TD.error("In �stlicher Richtung geht es hier nicht weiter.");
+						TD.error("In östlicher Richtung geht es hier nicht weiter.");
 					}else{
 					window.addText("Gehe nach Osten ...");
 					room.loadRoom(room.getNextRoomE());
@@ -79,14 +78,12 @@ public class MainControl {
 				default:
 					TD.error();
 				}
-			}else{
-				TD.error();
-			}
+		}
 		}
 	}
 	private static void commandExit(Window window) {
 		TD.description("Du schläfst langsam ein und verlässt diese Welt.");
-		exit = true;
+		window.exit();
 	}
 	public static void commandHelp(Window window){
 		TD.headline("Hilfe");
