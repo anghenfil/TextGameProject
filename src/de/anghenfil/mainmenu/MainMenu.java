@@ -1,8 +1,10 @@
 package de.anghenfil.mainmenu;
 import de.anghenfil.user.*;
 import de.anghenfil.editor.*;
+import de.anghenfil.gui.Window;
 import de.anghenfil.maingame.MainGame;
 
+import java.awt.EventQueue;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,9 +17,16 @@ import de.anghenfil.textdesign.*;
 public class MainMenu {
 	static String path = System.getProperty("user.home")+"/AppData/Roaming/TextGameProject";
 	static File destDir = new File(System.getProperty("user.home")+"/AppData/Roaming/TextGameProject");
+	static Window window;
+	static boolean createnew; //True if no save file exists
 	
+	public static boolean getCreatenew() {
+		return createnew;
+	}
+	public static void setCreatenew(boolean createnew) {
+		MainMenu.createnew = createnew;
+	}
 	public static void main(String[] args) {
-		boolean createnew; //True if no save file exists
 		String decision = null;
 		Path save = Paths.get(path);
 		Scanner sc = new Scanner(System.in);
@@ -31,7 +40,18 @@ public class MainMenu {
 					System.exit(0);
 			}
 		}
-		//Maybe later integrate start in GUI?
+		EventQueue.invokeLater(new Runnable() { //Start GUI
+			public void run() {
+				try {
+					window = new Window();
+					window.initialize();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		//TODO: Integrate Starting in GUI
 		System.out.println("Editor oder Spiel starten?");
 		decision = sc.next();
 		decision = decision.toLowerCase(); //Making input lower case
@@ -43,9 +63,9 @@ public class MainMenu {
 			createnew = UserManager.checkUserData(); //Check if User file already exists
 			if(createnew){ //If new user needed
 				UserManager.userCreation(); //Start User Creation
-				MainGame.play();//Start game
+				MainGame.play(window);//Start game
 			}else if(createnew == false){
-				MainGame.play(); //Starts game
+				MainGame.play(window); //Starts game
 			}
 			break;
 		default:
@@ -55,6 +75,9 @@ public class MainMenu {
 	}
 	public static File getPath(){
 		return destDir;
+	}	
+	public static Window getWindow(){
+		return window;
 	}
 
 }

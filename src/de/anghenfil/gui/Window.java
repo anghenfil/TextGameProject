@@ -13,7 +13,9 @@ import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import de.anghenfil.maingame.MainControl;
+import de.anghenfil.mainmenu.MainMenu;
 import de.anghenfil.textdesign.TD;
+import de.anghenfil.user.UserManager;
 
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -55,7 +57,12 @@ public class Window {
 		textField.setMargin(new Insets(1, 1, 1, 1));
 		textField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String input = textField.getText();
+				String input = "unset";
+				if(MainMenu.getCreatenew()){ //If we are in User Creation
+					input = textField.getText();
+					UserManager.checkInput();
+				}
+				input = textField.getText();
 				TD.input(input);
 				MainControl.checkInputs(input);
 				textField.setText(""); //Remove input in textfield after pressing enter

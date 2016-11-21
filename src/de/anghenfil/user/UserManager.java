@@ -1,13 +1,22 @@
 package de.anghenfil.user;
 import java.io.*;
 import java.util.Scanner;
+
+import org.apache.commons.lang3.SystemUtils;
+
+import de.anghenfil.mainmenu.MainMenu;
 import de.anghenfil.textdesign.TD;
 
 public class UserManager {
 	public static boolean checkUserData(){
 		boolean createnew = false;
-		//TODO: Integrate APPDATA/.../ path
-		File datafile1 = new File("TextGameProject/user");
+		String path;
+		if(SystemUtils.IS_OS_WINDOWS == true){
+        	path = MainMenu.getPath()+"\\user";
+        }else{
+        	path = MainMenu.getPath()+"/user";
+        }
+		File datafile1 = new File(path);
 		if(datafile1.exists() && !datafile1.isDirectory()){
 			createnew = false;
 		}else{
@@ -17,10 +26,16 @@ public class UserManager {
 	}public static User loadUser(){
 		InputStream loaddata = null;
 		User user = null;
+		String path;
+		if(SystemUtils.IS_OS_WINDOWS == true){
+        	path = MainMenu.getPath()+"\\user";
+        }else{
+        	path = MainMenu.getPath()+"/user";
+        }
 		try{
 			File dir = new File("TextGameProject");
 			dir.mkdir();
-			loaddata = new FileInputStream("TextGameProject/user");
+			loaddata = new FileInputStream(path);
 			ObjectInputStream loadObject = new ObjectInputStream(loaddata);
 			user = (User) loadObject.readObject();
 		}
@@ -65,11 +80,11 @@ public class UserManager {
 		boolean klasse_valid = false;
 		
 		Scanner inputs = new Scanner(System.in); //Define Scanner for Inputs
-		TD.description("Langsam �ffnest du die Augen und siehst dich um. Du liegst auf einem Bett und an der gegen�berliegenden Seite des Zimmers siehst du einen alten Mann an einer Feuerstelle stehen. Er dreht sich um und l�chelt dich an. \n <<Ah, du bist aufgewacht! Nun, wer bist du?>>");
+		TD.description("Langsam öffnest du die Augen und siehst dich um. Du liegst auf einem Bett und an der gegenüberliegenden Seite des Zimmers siehst du einen alten Mann an einer Feuerstelle stehen. Er dreht sich um und lächelt dich an. <br> <<Ah, du bist aufgewacht! Nun, wer bist du?>>");
 		TD.headline("Charaktererstellung");
 		
 		while(all_correct != true){
-		TD.input_question("Wie hei�t du?");
+		TD.input_question("Wie heißt du?");
 		name = inputs.next();
 		TD.input_question("Hallo "+name+"! Bist du Mensch, Elf oder Halbelf?");
 		while(rasse_valid != true){
@@ -155,5 +170,9 @@ public class UserManager {
 		}
 		inputs.close();
 		createUser(name, rasse, klasse); //Create the User and Userfile with name, rasse, klasse
+	}
+	public static void checkInput() {
+		// TODO Auto-generated method stub
+		
 	}
 }
