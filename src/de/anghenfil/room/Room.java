@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
+import org.apache.commons.lang3.SystemUtils;
 import de.anghenfil.mainmenu.MainMenu;
 
 public class Room {
@@ -51,13 +51,18 @@ public class Room {
 	public void setNextRoomW(int nextRoomW) {
 		this.nextRoomW = nextRoomW;
 	}public Room loadRoom(int roomID){
+		String path = "unset";
 		Room room = new Room();
 		Connection c = null;
 		Statement stmt = null;
 	    try {
 	        Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:"+MainMenu.getPath()+"\\rooms.db");
-	        
+	        if(SystemUtils.IS_OS_WINDOWS == true){
+	        	path = MainMenu.getPath()+"\\rooms.db";
+	        }else{
+	        	path = MainMenu.getPath()+"/rooms.db";
+	        }
+			c = DriverManager.getConnection("jdbc:sqlite:"+path);
 	        stmt = c.createStatement();
 	        ResultSet rs = stmt.executeQuery("SELECT * FROM rooms"); //Change * later to the final columns
 	        while(rs.next()){
