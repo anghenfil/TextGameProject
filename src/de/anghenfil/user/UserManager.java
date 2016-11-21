@@ -67,6 +67,9 @@ public class UserManager {
 		
 	}
 	public static void userCreation(){
+		userCreation(null);
+	}
+	public static void userCreation(String content){
 		String name = null;
 		String klasse = null;
 		String rasse = null;
@@ -79,13 +82,10 @@ public class UserManager {
 		boolean rasse_valid = false;
 		boolean klasse_valid = false;
 		
-		Scanner inputs = new Scanner(System.in); //Define Scanner for Inputs
-		TD.description("Langsam öffnest du die Augen und siehst dich um. Du liegst auf einem Bett und an der gegenüberliegenden Seite des Zimmers siehst du einen alten Mann an einer Feuerstelle stehen. Er dreht sich um und lächelt dich an. <br> <<Ah, du bist aufgewacht! Nun, wer bist du?>>");
+		TD.description("Langsam �ffnest du die Augen und siehst dich um. Du liegst auf einem Bett und an der gegenüberliegenden Seite des Zimmers siehst du einen alten Mann an einer Feuerstelle stehen. Er dreht sich um und lächelt dich an. <br> <<Ah, du bist aufgewacht! Nun, wer bist du?>>");
 		TD.headline("Charaktererstellung");
+		TD.input_question("Wie hei�t du?");
 		
-		while(all_correct != true){
-		TD.input_question("Wie heißt du?");
-		name = inputs.next();
 		TD.input_question("Hallo "+name+"! Bist du Mensch, Elf oder Halbelf?");
 		while(rasse_valid != true){
 			rasse_eingabe = inputs.next();

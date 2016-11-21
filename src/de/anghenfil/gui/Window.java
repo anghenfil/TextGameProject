@@ -58,10 +58,6 @@ public class Window {
 		textField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String input = "unset";
-				if(MainMenu.getCreatenew()){ //If we are in User Creation
-					input = textField.getText();
-					UserManager.checkInput();
-				}
 				input = textField.getText();
 				TD.input(input);
 				MainControl.checkInputs(input);
