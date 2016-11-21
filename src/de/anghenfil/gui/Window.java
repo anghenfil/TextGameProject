@@ -107,4 +107,7 @@ public class Window {
 			e.printStackTrace();
 		}
 	}
+	public void exit(){
+		System.exit(1);
+	}
 }
