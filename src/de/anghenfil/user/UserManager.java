@@ -70,7 +70,7 @@ public class UserManager {
 		userCreation(null);
 	}
 	public static void userCreation(String content){
-		String name = null;
+		/*String name = null;
 		String klasse = null;
 		String rasse = null;
 		String rasse_eingabe;
@@ -82,9 +82,9 @@ public class UserManager {
 		boolean rasse_valid = false;
 		boolean klasse_valid = false;
 		
-		TD.description("Langsam �ffnest du die Augen und siehst dich um. Du liegst auf einem Bett und an der gegenüberliegenden Seite des Zimmers siehst du einen alten Mann an einer Feuerstelle stehen. Er dreht sich um und lächelt dich an. <br> <<Ah, du bist aufgewacht! Nun, wer bist du?>>");
+		TD.description("Langsam �ffnest du die Augen und siehst dich um. Du liegst auf einem Bett und an der gegenüberliegenden Seite des Zimmers siehst du einen alten Mann an einer Feuerstelle stehen. Er dreht sich um und lächelt dich an. <br> <<Ah, du bist aufgewacht! Nun, wer bist du?>>");
 		TD.headline("Charaktererstellung");
-		TD.input_question("Wie hei�t du?");
+		TD.input_question("Wie hei�t du?");
 		
 		TD.input_question("Hallo "+name+"! Bist du Mensch, Elf oder Halbelf?");
 		while(rasse_valid != true){
@@ -170,6 +170,7 @@ public class UserManager {
 		}
 		inputs.close();
 		createUser(name, rasse, klasse); //Create the User and Userfile with name, rasse, klasse
+		*/
 	}
 	public static void checkInput() {
 		// TODO Auto-generated method stub

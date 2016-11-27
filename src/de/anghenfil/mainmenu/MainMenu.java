@@ -1,6 +1,7 @@
 package de.anghenfil.mainmenu;
 import de.anghenfil.user.*;
 import de.anghenfil.editor.*;
+import de.anghenfil.gui.CharacterCreation;
 import de.anghenfil.gui.Window;
 import de.anghenfil.maingame.MainGame;
 
@@ -17,7 +18,6 @@ import de.anghenfil.textdesign.*;
 public class MainMenu {
 	static String path = System.getProperty("user.home")+"/AppData/Roaming/TextGameProject";
 	static File destDir = new File(System.getProperty("user.home")+"/AppData/Roaming/TextGameProject");
-	static Window window;
 	static boolean createnew; //True if no save file exists
 	
 	public static boolean getCreatenew() {
@@ -40,16 +40,6 @@ public class MainMenu {
 					System.exit(0);
 			}
 		}
-		EventQueue.invokeLater(new Runnable() { //Start GUI
-			public void run() {
-				try {
-					window = new Window();
-					window.initialize();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
 		
 		//TODO: Integrate Starting in GUI
 		System.out.println("Editor oder Spiel starten?");
@@ -62,10 +52,20 @@ public class MainMenu {
 		case "spiel":
 			createnew = UserManager.checkUserData(); //Check if User file already exists
 			if(createnew){ //If new user needed
-				UserManager.userCreation(); //Start User Creation
-				MainGame.play(window);//Start game
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							CharacterCreation window = new CharacterCreation();
+							window.frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+				//UserManager.userCreation(); //Start User Creation
+				//MainGame.play(window);//Start game
 			}else if(createnew == false){
-				MainGame.play(window); //Starts game
+				MainGame.play(); //Starts game
 			}
 			break;
 		default:
@@ -76,8 +76,5 @@ public class MainMenu {
 	public static File getPath(){
 		return destDir;
 	}	
-	public static Window getWindow(){
-		return window;
-	}
 
 }

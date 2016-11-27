@@ -9,10 +9,20 @@ import de.anghenfil.sql.RoomSQL;
 
 public class MainGame {
 	static Room room;
-	public static void play(Window window){
+	static Window window;
+	public static void play(){
+		EventQueue.invokeLater(new Runnable() { //Start GUI
+			public void run() {
+				try {
+					window = new Window();
+					window.initialize();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 		User user = UserManager.loadUser();
 		room = new Room();
-		window = MainMenu.getWindow();
 		room = room.loadRoom(user.getAct_room()); //Load last visited Room from User object
 				
 		window.addText("Willkommen!"); //Welcome message
@@ -20,6 +30,9 @@ public class MainGame {
 	}
 	public static Room getRoom(){
 		return room;
+	}
+	public static Window getWindow(){
+		return window;
 	}
 	
 }
