@@ -20,10 +20,13 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import java.awt.Toolkit;
 
 public class CharacterCreation {
 
-	public JFrame frame = new JFrame();
+	public JFrame frmTheTextgameproject = new JFrame();
 	private JTextField textField;
 	private JTable table;
 	private JTextField unvergeben;
@@ -56,9 +59,11 @@ public class CharacterCreation {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame.setResizable(false);
-		frame.setBounds(100, 100, 750, 462);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmTheTextgameproject.setIconImage(Toolkit.getDefaultToolkit().getImage(CharacterCreation.class.getResource("/TGP Test.png")));
+		frmTheTextgameproject.setTitle("The TextGameProject 1.0");
+		frmTheTextgameproject.setResizable(false);
+		frmTheTextgameproject.setBounds(100, 100, 750, 462);
+		frmTheTextgameproject.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblCharaktererstellung = new JLabel("Charaktererstellung");
 		lblCharaktererstellung.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -69,8 +74,9 @@ public class CharacterCreation {
 		textField = new JTextField();
 		textField.setColumns(10);
 		unvergeben = new JTextField();
+		unvergeben.setHorizontalAlignment(SwingConstants.CENTER);
 		unvergeben.setEditable(false);
-		unvergeben.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		unvergeben.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		unvergeben.setColumns(10);
 		unvergeben.setText("" + free_points);
 		JLabel lblRasse = new JLabel("Rasse");
@@ -123,6 +129,9 @@ public class CharacterCreation {
 		lblKlasse.setFont(new Font("Dialog", Font.PLAIN, 13));
 		
 		table = new JTable();
+		table.setRequestFocusEnabled(false);
+		table.setRowSelectionAllowed(false);
+		table.setBackground(UIManager.getColor("Button.background"));
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{"", "Basic", "Bonus", "Gesamt"},
@@ -134,7 +143,7 @@ public class CharacterCreation {
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
-				false, true, true, true
+				false, false, false, false
 			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
@@ -218,7 +227,7 @@ public class CharacterCreation {
 		
 		JLabel lblFrei = new JLabel("Frei");
 		
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		GroupLayout groupLayout = new GroupLayout(frmTheTextgameproject.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
@@ -234,44 +243,39 @@ public class CharacterCreation {
 								.addComponent(lblKlasse, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(list_1, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(list, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
-									.addGap(106)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(list, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+										.addComponent(textField, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
+									.addPreferredGap(ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
 									.addComponent(table, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 											.addComponent(btnUp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 											.addComponent(button, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE))
-										.addComponent(lblFrei)))
-								.addComponent(textField, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
-								.addComponent(list_1, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE))))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(unvergeben, 0, 0, Short.MAX_VALUE)
-						.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 16, Short.MAX_VALUE)
-						.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 16, Short.MAX_VALUE))
-					.addContainerGap(25, Short.MAX_VALUE))
+										.addComponent(lblFrei))
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(unvergeben, 0, 0, Short.MAX_VALUE)
+										.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 16, Short.MAX_VALUE)
+										.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE))
+									.addPreferredGap(ComponentPlacement.RELATED)))))
+					.addGap(35))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addContainerGap(18, Short.MAX_VALUE)
 					.addComponent(lblCharaktererstellung, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblCharaktername)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-							.addComponent(lblRasse, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-							.addComponent(list))
-						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(table, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblFrei)
 								.addComponent(unvergeben, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
+							.addGap(0)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
@@ -280,13 +284,22 @@ public class CharacterCreation {
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(btnUp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 									.addGap(1)
-									.addComponent(button, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)))))
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(list_1, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblKlasse, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(184, Short.MAX_VALUE))
+									.addComponent(button, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE))))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblCharaktername)
+								.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(18)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblRasse, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+								.addComponent(list))
+							.addGap(18)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(list_1)
+								.addComponent(lblKlasse, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(table, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(190, Short.MAX_VALUE))
 		);
-		frame.getContentPane().setLayout(groupLayout);
+		frmTheTextgameproject.getContentPane().setLayout(groupLayout);
 	}
 }

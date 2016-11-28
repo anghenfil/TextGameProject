@@ -55,7 +55,7 @@ public class MainMenu {
 					public void run() {
 						try {
 							CharacterCreation window = new CharacterCreation();
-							window.frame.setVisible(true);
+							window.frmTheTextgameproject.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
