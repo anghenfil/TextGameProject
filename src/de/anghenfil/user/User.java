@@ -61,6 +61,7 @@ public class User implements Serializable{
 		  savedata = new FileOutputStream("TextGameProject/user");
 		  ObjectOutputStream saveobject = new ObjectOutputStream(savedata);
 		  saveobject.writeObject(this);
+		  saveobject.close();
 		}
 		catch ( IOException e ) { System.err.println( e ); }
 		finally { try { savedata.close(); } catch ( Exception e ) { e.printStackTrace(); } }

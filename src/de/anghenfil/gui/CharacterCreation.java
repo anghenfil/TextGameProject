@@ -1,33 +1,47 @@
 package de.anghenfil.gui;
 
-import java.awt.EventQueue;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
+import javax.swing.AbstractListModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JTextField;
-import javax.swing.JList;
-import javax.swing.AbstractListModel;
-import javax.swing.ListSelectionModel;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.JButton;
 import javax.swing.ImageIcon;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Dimension;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 public class CharacterCreation {
 
 	public JFrame frame = new JFrame();
 	private JTextField textField;
 	private JTable table;
-
+	private JTextField unvergeben;
+	private int free_points = 10;
+	private int points_hp = 0;
+	private int points_ap = 0;
+	private int df_hp;
+	private int df_ap;
+	private int magier_df_hp = 100;
+	private int priester_df_hp = 150;
+	private int krieger_df_hp = 200;
+	private int magier_df_ap = 200;
+	private int priester_df_ap = 100;
+	private int krieger_df_ap = 75;
+	private int bonus_hp = 0;
+	private int total_hp = 0;
+	private int bonus_ap = 0;
+	private int total_ap = 0;
 	/**
 	 * Launch the application.
 	 */
@@ -42,6 +56,7 @@ public class CharacterCreation {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		frame.setResizable(false);
 		frame.setBounds(100, 100, 750, 462);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -53,7 +68,11 @@ public class CharacterCreation {
 		
 		textField = new JTextField();
 		textField.setColumns(10);
-		
+		unvergeben = new JTextField();
+		unvergeben.setEditable(false);
+		unvergeben.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		unvergeben.setColumns(10);
+		unvergeben.setText("" + free_points);
 		JLabel lblRasse = new JLabel("Rasse");
 		lblRasse.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		
@@ -72,24 +91,21 @@ public class CharacterCreation {
 		JList list_1 = new JList();
 		list_1.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
-				int magier_df_hp = 100;
-				int priester_df_hp = 150;
-				int krieger_df_hp = 200;
-				int magier_df_ap = 200;
-				int priester_df_ap = 100;
-				int krieger_df_ap = 75;
 				if(list_1.getSelectedValue() == "Magier"){
-					table.getModel().setValueAt(magier_df_hp, 1, 1);
-					table.getModel().setValueAt(magier_df_ap, 2, 1);
+					df_hp = magier_df_hp;
+					df_ap = magier_df_ap;
 				}
 				if(list_1.getSelectedValue() == "Krieger"){
-					table.getModel().setValueAt(krieger_df_hp, 1, 1);
-					table.getModel().setValueAt(krieger_df_ap, 2, 1);
+					df_hp = krieger_df_hp;
+					df_ap =	krieger_df_ap;
 				}
 				if(list_1.getSelectedValue() == "Priester"){
-					table.getModel().setValueAt(priester_df_hp, 1, 1);
-					table.getModel().setValueAt(priester_df_ap, 2, 1);
+					df_hp = priester_df_hp;
+					df_ap = priester_df_ap;
 				}
+				table.getModel().setValueAt(df_hp, 1, 1);
+				table.getModel().setValueAt(df_ap, 2, 1);
+				
 			}
 		});
 		list_1.setModel(new AbstractListModel() {
@@ -129,18 +145,79 @@ public class CharacterCreation {
 		table.getColumnModel().getColumn(0).setMinWidth(8);
 		
 		JButton btnUp = new JButton("");
-		btnUp.setIcon(new ImageIcon("/home/anghenfil/up.png"));
+		btnUp.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p up.png")));
 		btnUp.setPreferredSize(new Dimension(16, 16));
 		btnUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				if(free_points > 0){
+					free_points = free_points -1;
+					unvergeben.setText("" + free_points);
+					points_hp = points_hp + 1;
+					bonus_hp = (points_hp*10); 
+					total_hp = df_hp + bonus_hp;
+					table.getModel().setValueAt(bonus_hp, 1, 2);
+					table.getModel().setValueAt(total_hp, 1, 3);
+				}
 			}
 		});
 		btnUp.setFont(new Font("Dialog", Font.BOLD, 9));
 		
 		JButton button = new JButton("");
-		button.setIcon(new ImageIcon("/home/anghenfil/up.png"));
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(free_points > 0){
+					free_points = free_points -1;
+					unvergeben.setText("" + free_points);
+					points_ap = points_ap + 1;
+					bonus_ap = (points_ap*10); 
+					total_ap = df_ap + bonus_ap;
+					table.getModel().setValueAt(bonus_ap, 2, 2);
+					table.getModel().setValueAt(total_ap, 2, 3);
+				}
+			}
+		});
+		button.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p up.png")));
 		button.setPreferredSize(new Dimension(16, 16));
 		button.setFont(new Font("Dialog", Font.BOLD, 9));
+		
+		JButton button_1 = new JButton("");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(points_ap > 0){
+					free_points = free_points + 1;
+					unvergeben.setText("" + free_points);
+					points_ap = points_ap - 1;
+					bonus_ap = (points_ap*10); 
+					total_ap = df_ap + bonus_ap;
+					table.getModel().setValueAt(bonus_ap, 2, 2);
+					table.getModel().setValueAt(total_ap, 2, 3);
+				}
+			}
+		});
+		button_1.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p down.png")));
+		button_1.setPreferredSize(new Dimension(16, 16));
+		button_1.setFont(new Font("Dialog", Font.BOLD, 9));
+		
+		JButton button_2 = new JButton("");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(points_hp > 0){
+					free_points = free_points + 1;
+					unvergeben.setText("" + free_points);
+					points_hp = points_hp - 1;
+					bonus_hp = (points_hp*10); 
+					total_hp = df_hp + bonus_hp;
+					table.getModel().setValueAt(bonus_hp, 1, 2);
+					table.getModel().setValueAt(total_hp, 1, 3);
+				}
+			}
+		});
+		button_2.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p down.png")));
+		button_2.setPreferredSize(new Dimension(16, 16));
+		button_2.setFont(new Font("Dialog", Font.BOLD, 9));
+		
+		JLabel lblFrei = new JLabel("Frei");
+		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -161,41 +238,54 @@ public class CharacterCreation {
 									.addComponent(list, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
 									.addGap(106)
 									.addComponent(table, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(btnUp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(button, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)))
+										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+											.addComponent(btnUp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addComponent(button, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE))
+										.addComponent(lblFrei)))
 								.addComponent(textField, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
 								.addComponent(list_1, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(35, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(unvergeben, 0, 0, Short.MAX_VALUE)
+						.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 16, Short.MAX_VALUE)
+						.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 16, Short.MAX_VALUE))
+					.addContainerGap(25, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(lblCharaktererstellung, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblCharaktername)
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(lblCharaktererstellung, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblRasse, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+							.addComponent(list))
+						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblCharaktername)
-								.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(18)
+								.addComponent(table, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblFrei)
+								.addComponent(unvergeben, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-									.addComponent(lblRasse, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-									.addComponent(list))
-								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-									.addComponent(button, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-									.addComponent(table, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-							.addGap(18)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(list_1, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblKlasse, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(136)
-							.addComponent(btnUp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(196, Short.MAX_VALUE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+									.addGap(1)
+									.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(btnUp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addGap(1)
+									.addComponent(button, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)))))
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(list_1, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblKlasse, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(184, Short.MAX_VALUE))
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}

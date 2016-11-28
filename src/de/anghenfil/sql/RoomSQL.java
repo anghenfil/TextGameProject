@@ -4,7 +4,6 @@ import java.sql.*;
 import org.apache.commons.lang3.SystemUtils;
 
 import de.anghenfil.mainmenu.MainMenu;
-import de.anghenfil.room.Room;
 
 public class RoomSQL {
 	

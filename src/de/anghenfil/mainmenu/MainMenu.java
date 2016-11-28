@@ -2,7 +2,6 @@ package de.anghenfil.mainmenu;
 import de.anghenfil.user.*;
 import de.anghenfil.editor.*;
 import de.anghenfil.gui.CharacterCreation;
-import de.anghenfil.gui.Window;
 import de.anghenfil.maingame.MainGame;
 
 import java.awt.EventQueue;

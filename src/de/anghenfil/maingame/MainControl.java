@@ -1,9 +1,7 @@
 package de.anghenfil.maingame;
 import java.util.Objects;
 import de.anghenfil.gui.Window;
-import de.anghenfil.mainmenu.MainMenu;
 import de.anghenfil.room.Room;
-import de.anghenfil.sql.RoomSQL;
 import de.anghenfil.textdesign.TD;
 
 public class MainControl {
@@ -11,7 +9,7 @@ public class MainControl {
 	static String rawinput;
 	static String[] input;
 	public static void checkInputs(String rawinput){
-			Window window = MainMenu.getWindow();
+			Window window = MainGame.getWindow();
 			Room room = MainGame.getRoom();
 			
 			rawinput = rawinput.toLowerCase();

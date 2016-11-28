@@ -13,10 +13,7 @@ import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import de.anghenfil.maingame.MainControl;
-import de.anghenfil.mainmenu.MainMenu;
 import de.anghenfil.textdesign.TD;
-import de.anghenfil.user.UserManager;
-
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.io.IOException;

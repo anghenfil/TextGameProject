@@ -3,9 +3,7 @@ import de.anghenfil.user.*;
 import java.awt.EventQueue;
 
 import de.anghenfil.gui.Window;
-import de.anghenfil.mainmenu.MainMenu;
 import de.anghenfil.room.Room;
-import de.anghenfil.sql.RoomSQL;
 
 public class MainGame {
 	static Room room;

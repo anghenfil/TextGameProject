@@ -1,9 +1,9 @@
 package de.anghenfil.textdesign;
-import de.anghenfil.mainmenu.MainMenu;
+import de.anghenfil.maingame.MainGame;
 
 public class TD {
 	public static void headline(String content){
-		de.anghenfil.gui.Window window = MainMenu.getWindow();
+		de.anghenfil.gui.Window window = MainGame.getWindow();
 		int countchars;
 		String line = "";
 
@@ -15,17 +15,17 @@ public class TD {
 		window.addText("<b>"+content+"</b>");
 		window.addText("<b>"+ line + "</b>");
 	}public static void input_question(String content){
-		de.anghenfil.gui.Window window = MainMenu.getWindow();
+		de.anghenfil.gui.Window window = MainGame.getWindow();
 		window.addText("|| ");
 		window.addText(content);
 	}public static void input(String content){
-		de.anghenfil.gui.Window window = MainMenu.getWindow();
+		de.anghenfil.gui.Window window = MainGame.getWindow();
 		window.addText("> " + content);
 	}public static void description(String content){
-		de.anghenfil.gui.Window window = MainMenu.getWindow();
+		de.anghenfil.gui.Window window = MainGame.getWindow();
 		window.addText("<b>"+content+"</b>");
 	}public static void error(String content){
-		de.anghenfil.gui.Window window = MainMenu.getWindow();
+		de.anghenfil.gui.Window window = MainGame.getWindow();
 		window.addText("<b>"+content+"</b>");
 	}public static void error(){
 		error("Deine Antwort konnte nicht erkannt werden. Bitte wiederhole deine Eingabe!");

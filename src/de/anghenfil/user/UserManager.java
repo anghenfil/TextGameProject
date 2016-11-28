@@ -1,11 +1,8 @@
 package de.anghenfil.user;
 import java.io.*;
-import java.util.Scanner;
-
 import org.apache.commons.lang3.SystemUtils;
 
 import de.anghenfil.mainmenu.MainMenu;
-import de.anghenfil.textdesign.TD;
 
 public class UserManager {
 	public static boolean checkUserData(){
@@ -38,6 +35,7 @@ public class UserManager {
 			loaddata = new FileInputStream(path);
 			ObjectInputStream loadObject = new ObjectInputStream(loaddata);
 			user = (User) loadObject.readObject();
+			loadObject.close();
 		}
 		catch ( IOException e ) { System.err.println( e ); }
 		catch ( ClassNotFoundException e ) { System.err.println( e ); }
