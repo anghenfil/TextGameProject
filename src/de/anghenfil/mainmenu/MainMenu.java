@@ -61,8 +61,6 @@ public class MainMenu {
 						}
 					}
 				});
-				//UserManager.userCreation(); //Start User Creation
-				//MainGame.play(window);//Start game
 			}else if(createnew == false){
 				MainGame.play(); //Starts game
 			}

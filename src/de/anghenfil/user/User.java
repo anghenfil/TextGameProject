@@ -15,7 +15,9 @@ public class User implements Serializable{
 	String klasse; //Character Class
 	String rasse; //Character race
 	int health; //Actual Health
+	int bonus_health;
 	int ap; //Action Points -> = mana
+	int bonus_ap;
 	int act_room = 1; //Room where the player is
 	//Get and Set Methods:
 	public String getName() {
@@ -25,6 +27,21 @@ public class User implements Serializable{
 		this.name = name;
 	}
 	public String getKlasse() {
+		return klasse;
+	}
+	public int getBonus_health() {
+		return bonus_health;
+	}
+	public void setBonus_health(int bonus_health) {
+		this.bonus_health = bonus_health;
+	}
+	public int getBonus_ap() {
+		return bonus_ap;
+	}
+	public void setBonus_ap(int bonus_ap) {
+		this.bonus_ap = bonus_ap;
+	}
+	public String setKlasse(String klasse) {
 		return klasse;
 	}
 	public String getRasse() {

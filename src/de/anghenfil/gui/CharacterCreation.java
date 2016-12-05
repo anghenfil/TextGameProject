@@ -1,9 +1,11 @@
 package de.anghenfil.gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.AbstractListModel;
 import javax.swing.GroupLayout;
@@ -20,6 +22,11 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+
+import de.anghenfil.maingame.MainGame;
+import de.anghenfil.user.User;
+import de.anghenfil.user.UserManager;
+
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import java.awt.Toolkit;
@@ -74,6 +81,7 @@ public class CharacterCreation {
 		textField = new JTextField();
 		textField.setColumns(10);
 		unvergeben = new JTextField();
+		unvergeben.setBackground(UIManager.getColor("Label.background"));
 		unvergeben.setHorizontalAlignment(SwingConstants.CENTER);
 		unvergeben.setEditable(false);
 		unvergeben.setFont(new Font("Tahoma", Font.PLAIN, 10));
@@ -227,6 +235,51 @@ public class CharacterCreation {
 		
 		JLabel lblFrei = new JLabel("Frei");
 		
+		JButton btnCharakterErstellen = new JButton("Charakter erstellen");
+		btnCharakterErstellen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<String> errorsrc = new ArrayList<String>();
+				String name = textField.getText();
+				String race = list.getSelectedValue().toString();
+				String klasse = list_1.getSelectedValue().toString();
+				errorsrc = UserManager.checkInput(name, free_points, race, klasse); //Check Charakter Name, if free_points 0 and if race and class selected
+				
+				textField.setBackground(Color.WHITE);
+				//TODO: Label default swing color
+				list.setBackground(Color.WHITE);
+				list_1.setBackground(Color.WHITE);
+				
+				if(!errorsrc.isEmpty()){
+					if(errorsrc.contains("name")){
+						textField.setBackground(Color.RED);
+					}
+					if(errorsrc.contains("free_points")){
+						unvergeben.setBackground(Color.RED);
+					}
+					if(errorsrc.contains("race")){
+						list.setBackground(Color.RED);
+					}
+					if(errorsrc.contains("klasse")){
+						list_1.setBackground(Color.RED);
+					}
+				}else{
+					//TODO: Save points too
+					User user = new User();
+					user.setName(name);
+					user.setRasse(race);
+					user.setKlasse(klasse);
+					user.setAct_room(0);
+					user.setHealth(df_hp);
+					user.setBonus_health(bonus_hp);
+					user.setAp(df_ap);
+					user.setBonus_ap(bonus_ap);
+					user.saveUser();
+					MainGame.play();
+					System.exit(1);
+				}
+			}
+		});
+		
 		GroupLayout groupLayout = new GroupLayout(frmTheTextgameproject.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -263,6 +316,10 @@ public class CharacterCreation {
 										.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE))
 									.addPreferredGap(ComponentPlacement.RELATED)))))
 					.addGap(35))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(310)
+					.addComponent(btnCharakterErstellen)
+					.addContainerGap(309, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -298,7 +355,9 @@ public class CharacterCreation {
 								.addComponent(list_1)
 								.addComponent(lblKlasse, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)))
 						.addComponent(table, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(190, Short.MAX_VALUE))
+					.addGap(94)
+					.addComponent(btnCharakterErstellen)
+					.addGap(73))
 		);
 		frmTheTextgameproject.getContentPane().setLayout(groupLayout);
 	}
