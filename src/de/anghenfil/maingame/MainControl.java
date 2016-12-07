@@ -11,11 +11,6 @@ public class MainControl {
 	static boolean exit = false;
 	static String rawinput;
 	static String[] input;
-	private static List<RoomListener> listeners = new ArrayList<RoomListener>();
-	
-	public static void addListener(RoomListener toAdd) {
-        listeners.add(toAdd);
-    }
 	public static void checkInputs(String rawinput){
 			Window window = MainGame.getWindow();
 			Room room = MainGame.getRoom();
@@ -37,8 +32,7 @@ public class MainControl {
 				commandGehe(window, input, room);
 				break;
 			case "untersuche":
-				for (RoomListener rl : listeners)
-		            rl.onInspection();
+				
 				break;
 			default:
 				TD.error();
