@@ -70,7 +70,7 @@ public class CharacterCreation {
 		frmTheTextgameproject.setTitle("The TextGameProject 1.0");
 		frmTheTextgameproject.setResizable(false);
 		frmTheTextgameproject.setBounds(100, 100, 750, 462);
-		frmTheTextgameproject.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmTheTextgameproject.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		JLabel lblCharaktererstellung = new JLabel("Charaktererstellung");
 		lblCharaktererstellung.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -286,8 +286,8 @@ public class CharacterCreation {
 					user.setAp(df_ap);
 					user.setBonus_ap(bonus_ap);
 					user.saveUser();
+					frmTheTextgameproject.setVisible(false);
 					MainGame.play();
-					System.exit(1);
 				}
 			}
 		});

@@ -1,4 +1,5 @@
 package de.anghenfil.sql;
+import java.io.File;
 import java.sql.*;
 
 import org.apache.commons.lang3.SystemUtils;
@@ -10,14 +11,10 @@ public class RoomSQL {
 	public static boolean roomExist(int roomID){
 		boolean Roomexist = false;
 		Connection c = null;
-		String path = "unset";
+		File path;
 		try{
 			Class.forName("org.sqlite.JDBC");
-			if(SystemUtils.IS_OS_WINDOWS == true){
-	        	path = MainMenu.getPath()+"\\rooms.db";
-	        }else{
-	        	path = MainMenu.getPath()+"/rooms.db";
-	        }
+			path = new File(MainMenu.getPath(), "rooms.db");
 			c = DriverManager.getConnection("jdbc:sqlite:"+path);PreparedStatement ps = c.prepareStatement("SELECT * FROM rooms WHERE roomID = ?"); //Change * later to the final columns
 			ps.setInt(1, roomID);
 			ResultSet rs = ps.executeQuery();

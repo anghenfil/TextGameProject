@@ -6,6 +6,8 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 
+import de.anghenfil.mainmenu.MainMenu;
+
 public class User implements Serializable{
 	/**
 	 * 
@@ -41,8 +43,8 @@ public class User implements Serializable{
 	public void setBonus_ap(int bonus_ap) {
 		this.bonus_ap = bonus_ap;
 	}
-	public String setKlasse(String klasse) {
-		return klasse;
+	public void setKlasse(String klasse) {
+		this.klasse = klasse;
 	}
 	public String getRasse() {
 		return rasse;
@@ -73,15 +75,13 @@ public class User implements Serializable{
 
 		try
 		{
-		  File dir = new File("TextGameProject");
-		  dir.mkdir();
-		  savedata = new FileOutputStream("TextGameProject/user");
+		  savedata = new FileOutputStream(new File(MainMenu.getPath(),"user"));
 		  ObjectOutputStream saveobject = new ObjectOutputStream(savedata);
 		  saveobject.writeObject(this);
 		  saveobject.close();
+		  savedata.close();
 		}
 		catch ( IOException e ) { System.err.println( e ); }
-		finally { try { savedata.close(); } catch ( Exception e ) { e.printStackTrace(); } }
 	}
 	
 }

@@ -1,6 +1,5 @@
 package de.anghenfil.mainmenu;
 import de.anghenfil.user.*;
-import de.anghenfil.editor.*;
 import de.anghenfil.gui.CharacterCreation;
 import de.anghenfil.maingame.MainGame;
 
@@ -10,13 +9,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Scanner;
 import org.apache.commons.io.FileUtils;
 import de.anghenfil.textdesign.*;
 
 public class MainMenu {
-	static String path = System.getProperty("user.home")+"/AppData/Roaming/TextGameProject";
-	static File destDir = new File(System.getProperty("user.home")+"/AppData/Roaming/TextGameProject");
+	public static final String PATH = System.getProperty("user.home")+"/AppData/Roaming/TextGameProject";
+	static File destDir = new File(PATH);
 	static boolean createnew; //True if no save file exists
 	
 	public static boolean getCreatenew() {
@@ -26,7 +24,7 @@ public class MainMenu {
 		MainMenu.createnew = createnew;
 	}
 	public static void main(String[] args) {
-		Path save = Paths.get(path);
+		Path save = Paths.get(PATH);
 		File srcDir = new File("data/");
 		
 		if(!Files.exists(save)){

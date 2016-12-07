@@ -1,16 +1,25 @@
 package de.anghenfil.maingame;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import de.anghenfil.gui.Window;
 import de.anghenfil.room.Room;
+import de.anghenfil.room.RoomListener;
 import de.anghenfil.textdesign.TD;
 
 public class MainControl {
 	static boolean exit = false;
 	static String rawinput;
 	static String[] input;
+	private static List<RoomListener> listeners = new ArrayList<RoomListener>();
+	
+	public static void addListener(RoomListener toAdd) {
+        listeners.add(toAdd);
+    }
 	public static void checkInputs(String rawinput){
 			Window window = MainGame.getWindow();
 			Room room = MainGame.getRoom();
+			
 			
 			rawinput = rawinput.toLowerCase();
 			input = rawinput.split("\\s");
@@ -27,6 +36,10 @@ public class MainControl {
 			case "gehe":
 				commandGehe(window, input, room);
 				break;
+			case "untersuche":
+				for (RoomListener rl : listeners)
+		            rl.onInspection();
+				break;
 			default:
 				TD.error();
 				break;
@@ -40,7 +53,7 @@ public class MainControl {
 				switch(input[2]){
 				case "norden":
 					if(room.getNextRoomN() == 0){
-						TD.error("In nÃ¶rdlicher Richtung geht es hier nicht weiter.");
+						TD.error("In nördlicher Richtung geht es hier nicht weiter.");
 					}else{
 					window.addText("Gehe nach Norden ...");
 					room.loadRoom(room.getNextRoomN());
@@ -49,7 +62,7 @@ public class MainControl {
 					break;
 				case "sueden":
 					if(room.getNextRoomS() == 0){
-						TD.error("In sÃ¼dlicher Richtung geht es hier nicht weiter.");
+						TD.error("In südlicher Richtung geht es hier nicht weiter.");
 					}else{
 					window.addText("Gehe nach SÃ¼den ...");
 					room.loadRoom(room.getNextRoomS());
@@ -67,7 +80,7 @@ public class MainControl {
 					break;
 				case "osten":
 					if(room.getNextRoomE() == 0){
-						TD.error("In Ã¶stlicher Richtung geht es hier nicht weiter.");
+						TD.error("In östlicher Richtung geht es hier nicht weiter.");
 					}else{
 					window.addText("Gehe nach Osten ...");
 					room.loadRoom(room.getNextRoomE());
