@@ -240,8 +240,20 @@ public class CharacterCreation {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<String> errorsrc = new ArrayList<String>();
 				String name = textField.getText();
-				String race = list.getSelectedValue().toString();
-				String klasse = list_1.getSelectedValue().toString();
+				String race;
+				String klasse;
+				
+				if(list.getSelectedValue() != null){ //If nothing selected set race to null
+					race = list.getSelectedValue().toString();
+				}else{
+					race = null;
+				}
+				if(list_1.getSelectedValue() != null){ //If nothing selected set klasse to null
+					klasse = list_1.getSelectedValue().toString();
+				}else{
+					klasse = null;
+				}
+				
 				errorsrc = UserManager.checkInput(name, free_points, race, klasse); //Check Charakter Name, if free_points 0 and if race and class selected
 				
 				textField.setBackground(Color.WHITE);

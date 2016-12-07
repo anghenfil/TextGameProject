@@ -54,10 +54,10 @@ public class UserManager {
 		if(fpunkte != 0){ //Check if fpunkte is 0. If not, add fpunkte to errorsrc arrayList
 			errorsrc.add("fpunkte");
 		}
-		if(race.isEmpty()){ //Chek if race selected. If not, add race to errorsrc arraylist
+		if(race == null){ //Chek if race selected. If not, add race to errorsrc arraylist
 			errorsrc.add("race");
 		}
-		if(klasse.isEmpty()){ //Chek if race selected. If not, add klasse to errorsrc arraylist
+		if(klasse == null){ //Chek if race selected. If not, add klasse to errorsrc arraylist
 			errorsrc.add("klasse");
 		}
 		return errorsrc;
