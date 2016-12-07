@@ -26,9 +26,7 @@ public class MainMenu {
 		MainMenu.createnew = createnew;
 	}
 	public static void main(String[] args) {
-		String decision = null;
 		Path save = Paths.get(path);
-		Scanner sc = new Scanner(System.in);
 		File srcDir = new File("data/");
 		
 		if(!Files.exists(save)){
@@ -53,7 +51,7 @@ public class MainMenu {
 					}
 				});
 			}else if(createnew == false){
-				MainGame.play(); //Starts game
+				MainGame.play(); //Start game
 			}
 	}
 	public static File getPath(){
