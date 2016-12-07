@@ -40,15 +40,6 @@ public class MainMenu {
 			}
 		}
 		
-		//TODO: Integrate Starting in GUI
-		System.out.println("Editor oder Spiel starten?");
-		decision = sc.next();
-		decision = decision.toLowerCase(); //Making input lower case
-		switch(decision){
-		case "editor":
-			Editor.editor();
-			break;
-		case "spiel":
 			createnew = UserManager.checkUserData(); //Check if User file already exists
 			if(createnew){ //If new user needed
 				EventQueue.invokeLater(new Runnable() {
@@ -64,11 +55,6 @@ public class MainMenu {
 			}else if(createnew == false){
 				MainGame.play(); //Starts game
 			}
-			break;
-		default:
-			main(args);
-		}
-		sc.close();
 	}
 	public static File getPath(){
 		return destDir;
