@@ -17,7 +17,7 @@ public class MainGame {
 					User user = UserManager.loadUser();
 					room = new Room();
 					room = room.loadRoom(user.getAct_room()); //Load last visited Room from User object
-					window.addText("Willkommen!"); //Welcome message
+					
 					window.addText(room.getRoomDescription()); //Show actual room Description
 				} catch (Exception e) {
 					e.printStackTrace();
