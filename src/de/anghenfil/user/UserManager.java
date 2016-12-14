@@ -2,20 +2,18 @@ package de.anghenfil.user;
 import java.io.*;
 import java.util.ArrayList;
 
-import org.apache.commons.lang3.SystemUtils;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 
 import de.anghenfil.mainmenu.MainMenu;
 
 public class UserManager {
 	public static boolean checkUserData(){
 		boolean createnew = false;
-		String path;
-		if(SystemUtils.IS_OS_WINDOWS == true){
-        	path = MainMenu.getPath()+"\\user";
-        }else{
-        	path = MainMenu.getPath()+"/user";
-        }
-		File datafile1 = new File(path);
+		File datafile1;
+		
+		datafile1 = new File(MainMenu.getPath(), "user");
 		if(datafile1.exists() && !datafile1.isDirectory()){
 			createnew = false;
 		}else{
@@ -24,23 +22,20 @@ public class UserManager {
 		return createnew;
 	}public static User loadUser(){
 		InputStream loaddata = null;
+		File path = null;
 		User user = null;
-		String path;
-		if(SystemUtils.IS_OS_WINDOWS == true){
-        	path = MainMenu.getPath()+"\\user";
-        }else{
-        	path = MainMenu.getPath()+"/user";
-        }
+		
+		path = new File(MainMenu.getPath(), "user");
 		try{
-			File dir = new File("TextGameProject");
-			dir.mkdir();
 			loaddata = new FileInputStream(path);
 			ObjectInputStream loadObject = new ObjectInputStream(loaddata);
 			user = (User) loadObject.readObject();
 			loadObject.close();
 		}
-		catch ( IOException e ) { System.err.println( e ); }
-		catch ( ClassNotFoundException e ) { System.err.println( e ); }
+		catch ( IOException e ) { JFrame errorframe = new JFrame("Error.");
+		JOptionPane.showMessageDialog(errorframe, "Error: "+e); }
+		catch ( ClassNotFoundException e ) { JFrame errorframe = new JFrame("Error.");
+		JOptionPane.showMessageDialog(errorframe, "Error. Userfile corrupted."); }
 		finally { try { loaddata.close(); } catch ( Exception e ) { } }
 		return user;
 	}

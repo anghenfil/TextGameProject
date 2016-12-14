@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 import org.apache.commons.io.FileUtils;
 import de.anghenfil.textdesign.*;
 
@@ -17,12 +18,6 @@ public class MainMenu {
 	static File destDir = new File(PATH);
 	static boolean createnew; //True if no save file exists
 	
-	public static boolean getCreatenew() {
-		return createnew;
-	}
-	public static void setCreatenew(boolean createnew) {
-		MainMenu.createnew = createnew;
-	}
 	public static void main(String[] args) {
 		Path save = Paths.get(PATH);
 		File srcDir = new File("data/");
@@ -35,7 +30,6 @@ public class MainMenu {
 					System.exit(0);
 			}
 		}
-		
 			createnew = UserManager.checkUserData(); //Check if User file already exists
 			if(createnew){ //If new user needed
 				EventQueue.invokeLater(new Runnable() {
@@ -51,6 +45,12 @@ public class MainMenu {
 			}else if(createnew == false){
 				MainGame.play(); //Start game
 			}
+	}
+	public static boolean getCreatenew() {
+		return createnew;
+	}
+	public static void setCreatenew(boolean createnew) {
+		MainMenu.createnew = createnew;
 	}
 	public static File getPath(){
 		return destDir;
