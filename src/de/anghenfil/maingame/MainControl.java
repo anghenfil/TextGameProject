@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Objects;
 import de.anghenfil.gui.Window;
 import de.anghenfil.room.Room;
-import de.anghenfil.room.RoomListener;
 import de.anghenfil.textdesign.TD;
 
 public class MainControl {
