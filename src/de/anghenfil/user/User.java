@@ -9,9 +9,7 @@ import java.io.Serializable;
 import de.anghenfil.mainmenu.MainMenu;
 
 public class User implements Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -6159905496838092464L;
 	String name; //Character Name
 	String klasse; //Character Class

@@ -2,6 +2,7 @@ package de.anghenfil.maingame;
 import java.util.Objects;
 import de.anghenfil.gui.Window;
 import de.anghenfil.room.Room;
+import de.anghenfil.room.RoomScripts;
 import de.anghenfil.textdesign.TD;
 
 public class MainControl {
@@ -12,13 +13,11 @@ public class MainControl {
 			Window window = MainGame.getWindow();
 			Room room = MainGame.getRoom();
 			
-			
 			rawinput = rawinput.toLowerCase();
 			input = rawinput.split("\\s");
 			switch(input[0]){
 			case "commands":
 			case "hilfe":
-			case "help":
 				commandHelp(window);
 				break;
 			case "ende":
@@ -29,7 +28,7 @@ public class MainControl {
 				commandGehe(window, input, room);
 				break;
 			case "untersuche":
-				
+				RoomScripts.onInspection(room.getRoomID(), input, window);
 				break;
 			default:
 				TD.error();

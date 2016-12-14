@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 
 import de.anghenfil.mainmenu.MainMenu;
+import de.anghenfil.textdesign.TDError;
 
 public class UserManager {
 	public static boolean checkUserData(){
@@ -32,10 +33,8 @@ public class UserManager {
 			user = (User) loadObject.readObject();
 			loadObject.close();
 		}
-		catch ( IOException e ) { JFrame errorframe = new JFrame("Error.");
-		JOptionPane.showMessageDialog(errorframe, "Error: "+e); }
-		catch ( ClassNotFoundException e ) { JFrame errorframe = new JFrame("Error.");
-		JOptionPane.showMessageDialog(errorframe, "Error. Userfile corrupted."); }
+		catch ( IOException e ) { TDError.outError("Error: "+e); }
+		catch ( ClassNotFoundException e ) { TDError.outError("Error: Userfile corrupted."); }
 		finally { try { loaddata.close(); } catch ( Exception e ) { } }
 		return user;
 	}
