@@ -13,26 +13,31 @@ public class MainControl {
 			Window window = MainGame.getWindow();
 			Room room = MainGame.getRoom();
 			
+			//Execute CustomCode from RoomScripts
+			RoomScripts.customCode(room.getRoomID());
+			
+			//Handle input
 			rawinput = rawinput.toLowerCase();
 			input = rawinput.split("\\s");
+			
 			switch(input[0]){
-			case "commands":
-			case "hilfe":
-				commandHelp(window);
-				break;
-			case "ende":
-			case "exit":
-				commandExit(window);
-				break;
-			case "gehe":
-				commandGehe(window, input, room);
-				break;
-			case "untersuche":
-				RoomScripts.onInspection(room.getRoomID(), input, window);
-				break;
-			default:
-				TD.error();
-				break;
+				case "commands":
+				case "hilfe":
+					commandHelp(window);
+					break;
+				case "ende":
+				case "exit":
+					commandExit(window);
+					break;
+				case "gehe":
+					commandGehe(window, input, room);
+					break;
+				case "untersuche":
+					RoomScripts.onInspection(room.getRoomID(), input, window);
+					break;
+				default:
+					TD.error();
+					break;
 			}
 	}
 	private static void commandGehe(Window window, String[] input, Room room) {

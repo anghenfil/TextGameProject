@@ -33,12 +33,13 @@ public class RoomScripts{
 					default:
 						window.addText("Das kannst du hier nicht untersuchen.");
 				}
-			}
-		
-		default:
-			
+			}	
 		}
-		
+	}
+	public static void customCode(int roomID){
+		switch(roomID){
+		//Custom Room Code comes here
+		}
 	}
 	
 }
