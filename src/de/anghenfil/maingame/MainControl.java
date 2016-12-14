@@ -1,6 +1,4 @@
 package de.anghenfil.maingame;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import de.anghenfil.gui.Window;
 import de.anghenfil.room.Room;
