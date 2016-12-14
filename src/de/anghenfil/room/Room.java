@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+
 import org.apache.commons.lang3.SystemUtils;
 import de.anghenfil.mainmenu.MainMenu;
+import de.anghenfil.sql.SqlTools;
 
 public class Room {
 	private int roomID = 0;
@@ -14,6 +17,14 @@ public class Room {
 	private int nextRoomE = 0;
 	private int nextRoomW = 0;
 	private String roomDescription = "unset";
+	private int[] items = null;
+	
+	public int[] getItems() {
+		return items;
+	}
+	public void setItems(int[] items) {
+		this.items = items;
+	}
 	public int getRoomID() {
 		return roomID;
 	}
@@ -50,18 +61,13 @@ public class Room {
 	public void setNextRoomW(int nextRoomW) {
 		this.nextRoomW = nextRoomW;
 	}public Room loadRoom(int roomID){
-		String path = "unset";
 		Room room = new Room();
 		Connection c = null;
 		Statement stmt = null;
+		String[] items = null;
+		ArrayList<Integer> itemsE = new ArrayList<Integer>();
 	    try {
-	        Class.forName("org.sqlite.JDBC");
-	        if(SystemUtils.IS_OS_WINDOWS == true){
-	        	path = MainMenu.getPath()+"\\rooms.db";
-	        }else{
-	        	path = MainMenu.getPath()+"/rooms.db";
-	        }
-			c = DriverManager.getConnection("jdbc:sqlite:"+path);
+	    	c = SqlTools.getConnection();
 	        stmt = c.createStatement();
 	        ResultSet rs = stmt.executeQuery("SELECT * FROM rooms"); //Change * later to the final columns
 	        while(rs.next()){
@@ -71,6 +77,12 @@ public class Room {
 	        	room.setNextRoomN(rs.getInt("nextRoomN"));
 	        	room.setNextRoomS(rs.getInt("nextRoomS"));
 	        	room.setRoomDescription(rs.getString("roomDescription"));
+	        	items = rs.getString("roomItems").split(","); //TODO: ADD ERROR HANDLING IF THERE ARE NO ITEMS
+	        	System.out.println(rs.getString("roomItems"));
+	        	for(int i = 0;i<=items.length;i++){
+	        		itemsE.add(Integer.parseInt(items[i]));
+	        	}
+	        	System.out.println(itemsE);
 	        }
 	        rs.close();
 	        stmt.close();

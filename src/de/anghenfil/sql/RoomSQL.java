@@ -18,7 +18,7 @@ public class RoomSQL {
 	        System.exit(0);
 		}
 		return Roomexist;
-	}public static void saveRoom(int roomID, int nextRoomE, int nextRoomW, int nextRoomN, int nextRoomS, String roomDescription){
+	}public static void saveRoom(int roomID, int nextRoomE, int nextRoomW, int nextRoomN, int nextRoomS, String roomDescription){ //DEPRACED SINCE THERE IS NO LONGER A EDITOR
 		Connection c = null;
 		try{
 		c = SqlTools.getConnection();
