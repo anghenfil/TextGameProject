@@ -48,19 +48,19 @@ public class MainControl {
 				switch(input[2]){
 				case "norden":
 					if(room.getNextRoomN() == 0){
-						TD.error("In nördlicher Richtung geht es hier nicht weiter.");
+						TD.error("In nÃ¶rdlicher Richtung geht es hier nicht weiter.");
 					}else{
 					window.addText("Gehe nach Norden ...");
-					room.loadRoom(room.getNextRoomN());
+					room = room.loadRoom(room.getNextRoomN());
 					TD.description(room.getRoomDescription());
 					}
 					break;
 				case "sueden":
 					if(room.getNextRoomS() == 0){
-						TD.error("In südlicher Richtung geht es hier nicht weiter.");
+						TD.error("In sÃ¼dlicher Richtung geht es hier nicht weiter.");
 					}else{
 					window.addText("Gehe nach SÃ¼den ...");
-					room.loadRoom(room.getNextRoomS());
+					room = room.loadRoom(room.getNextRoomS());
 					TD.description(room.getRoomDescription());
 					}
 					break;
@@ -69,16 +69,16 @@ public class MainControl {
 						TD.error("In westlicher Richtung geht es hier nicht weiter.");
 					}else{
 					window.addText("Gehe nach Westen ...");
-					room.loadRoom(room.getNextRoomW());
+					room = room.loadRoom(room.getNextRoomW());
 					TD.description(room.getRoomDescription());
 					}
 					break;
 				case "osten":
 					if(room.getNextRoomE() == 0){
-						TD.error("In östlicher Richtung geht es hier nicht weiter.");
+						TD.error("In ï¿½stlicher Richtung geht es hier nicht weiter.");
 					}else{
 					window.addText("Gehe nach Osten ...");
-					room.loadRoom(room.getNextRoomE());
+					room = room.loadRoom(room.getNextRoomE());
 					TD.description(room.getRoomDescription());
 					}
 					break;
