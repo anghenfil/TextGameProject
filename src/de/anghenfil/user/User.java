@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import de.anghenfil.mainmenu.MainMenu;
 
@@ -26,7 +27,7 @@ public class User implements Serializable{
 	int charm;
 	int bonusCharm;
 	int intelligence;
-	
+	ArrayList<Integer> items = new ArrayList<Integer>();
 	public String getProfession() {
 		return profession;
 	}
@@ -117,9 +118,6 @@ public class User implements Serializable{
 	public void setName(String name) { //TODO: Save user every time, something changed
 		this.name = name;
 	}
-	public String getKlasse() {
-		return profession;
-	}
 	public int getBonus_health() {
 		return bonusHealth;
 	}
@@ -131,15 +129,6 @@ public class User implements Serializable{
 	}
 	public void setBonus_ap(int bonus_ap) {
 		this.bonusActionPoints = bonus_ap;
-	}
-	public void setKlasse(String klasse) {
-		this.profession = klasse;
-	}
-	public String getRasse() {
-		return race;
-	}
-	public void setRasse(String rasse) {
-		this.race = rasse;
 	}
 	public int getHealth() {
 		return healthPoints;
@@ -166,6 +155,15 @@ public class User implements Serializable{
 		  saveobject.writeObject(this);
 		  saveobject.close();
 		  savedata.close();
+	}
+	public boolean hasItem(int itemID){
+		boolean contains;
+		if(this.items.contains(itemID)){
+			contains = true;
+		}else{
+			contains = false;
+		}
+		return contains;
 	}
 	
 }

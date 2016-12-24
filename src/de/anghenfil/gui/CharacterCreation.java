@@ -38,7 +38,7 @@ public class CharacterCreation {
 	private JTextField textField;
 	private JTable table;
 	private JTextField unvergeben;
-	private int free_points = 10;
+	private int free_points = 30;
 	private int points_hp = 0;
 	private int points_ap = 0;
 	private int points_speed = 0;
@@ -127,6 +127,7 @@ public class CharacterCreation {
 		JList list_1 = new JList();
 		list_1.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
+				//TODO: Unblock skilling if professioen was selected
 				if(list_1.getSelectedValue() == "Student"){
 					df_hp = student_df_hp;
 					df_ap = student_df_ap;
@@ -279,7 +280,7 @@ public class CharacterCreation {
 				ArrayList<String> errorsrc = new ArrayList<String>();
 				String name = textField.getText();
 				String race;
-				String klasse;
+				String profession;
 				
 				if(list.getSelectedValue() != null){ //If nothing selected set race to null
 					race = list.getSelectedValue().toString();
@@ -287,12 +288,12 @@ public class CharacterCreation {
 					race = null;
 				}
 				if(list_1.getSelectedValue() != null){ //If nothing selected set klasse to null
-					klasse = list_1.getSelectedValue().toString();
+					profession = list_1.getSelectedValue().toString();
 				}else{
-					klasse = null;
+					profession = null;
 				}
 				
-				errorsrc = UserManager.checkInput(name, free_points, race, klasse); //Check Charakter Name, if free_points 0 and if race and class selected
+				errorsrc = UserManager.checkInput(name, free_points, race, profession); //Check Charakter Name, if free_points 0 and if race and class selected
 				
 				textField.setBackground(Color.WHITE);
 				//TODO: Label default swing color
@@ -309,19 +310,25 @@ public class CharacterCreation {
 					if(errorsrc.contains("race")){
 						list.setBackground(Color.RED);
 					}
-					if(errorsrc.contains("klasse")){
+					if(errorsrc.contains("profession")){
 						list_1.setBackground(Color.RED);
 					}
 				}else{
 					//TODO: Save points too
 					User user = new User();
 					user.setName(name);
-					user.setRasse(race);
-					user.setKlasse(klasse);
+					user.setRace(race);
+					user.setProfession(profession);
 					user.setHealth(df_hp);
 					user.setBonus_health(bonus_hp);
 					user.setAp(df_ap);
 					user.setBonus_ap(bonus_ap);
+					user.setSpeed(df_speed);
+					user.setBonusSpeed(bonus_speed);
+					user.setEloquence(df_eloquence);
+					user.setBonusEloquence(bonus_eloquence);
+					user.setCharm(df_charm);
+					user.setBonusCharm(bonus_charm);
 					try {
 						user.saveUser();
 					} catch (IOException e1) {

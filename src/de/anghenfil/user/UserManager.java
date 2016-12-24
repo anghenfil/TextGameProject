@@ -35,7 +35,7 @@ public class UserManager {
 		finally { try { loaddata.close(); } catch ( Exception e ) { } }
 		return user;
 	}
-	public static ArrayList<String> checkInput(String name, int fpunkte, String race, String klasse) {
+	public static ArrayList<String> checkInput(String name, int fpunkte, String race, String profession) {
 		ArrayList<String> errorsrc = new ArrayList<String>(); //If input is not correct, return source of error (name, free points, race or class)
 		
 		if(name.isEmpty()){ //Chek if name inserted. If not, add name to errorsrc arraylist
@@ -48,8 +48,8 @@ public class UserManager {
 		if(race == null){ //Chek if race selected. If not, add race to errorsrc arraylist
 			errorsrc.add("race");
 		}
-		if(klasse == null){ //Chek if race selected. If not, add klasse to errorsrc arraylist
-			errorsrc.add("klasse");
+		if(profession == null){ //Chek if race selected. If not, add klasse to errorsrc arraylist
+			errorsrc.add("profession");
 		}
 		return errorsrc;
 		
