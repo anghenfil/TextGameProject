@@ -2,9 +2,6 @@ package de.anghenfil.user;
 import java.io.*;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
 
 import de.anghenfil.mainmenu.MainMenu;
 import de.anghenfil.textdesign.TDError;
