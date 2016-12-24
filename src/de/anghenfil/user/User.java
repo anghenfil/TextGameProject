@@ -12,74 +12,160 @@ public class User implements Serializable{
 
 	private static final long serialVersionUID = -6159905496838092464L;
 	String name; //Character Name
-	String klasse; //Character Class
-	String rasse; //Character race
-	int health; //Actual Health
-	int bonus_health;
-	int ap; //Action Points -> = mana
-	int bonus_ap;
-	int act_room = 1; //Room where the player is
-	//Get and Set Methods:
+	String profession; //Character Class
+	String race; //Character race
+	int healthPoints; //Actual Health
+	int bonusHealth;
+	int actionPoints; //Action Points -> = mana
+	int bonusActionPoints;
+	int actRoom = 1; //Room where the player is
+	int speed; //Characters speed
+	int bonusSpeed;
+	int eloquence;
+	int bonusEloquence;
+	int charm;
+	int bonusCharm;
+	int intelligence;
+	
+	public String getProfession() {
+		return profession;
+	}
+	public void setProfession(String profession) {
+		this.profession = profession;
+	}
+	public String getRace() {
+		return race;
+	}
+	public void setRace(String race) {
+		this.race = race;
+	}
+	public int getHealthPoints() {
+		return healthPoints;
+	}
+	public void setHealthPoints(int healthPoints) {
+		this.healthPoints = healthPoints;
+	}
+	public int getBonusHealth() {
+		return bonusHealth;
+	}
+	public void setBonusHealth(int bonusHealth) {
+		this.bonusHealth = bonusHealth;
+	}
+	public int getActionPoints() {
+		return actionPoints;
+	}
+	public void setActionPoints(int actionPoints) {
+		this.actionPoints = actionPoints;
+	}
+	public int getBonusActionPoints() {
+		return bonusActionPoints;
+	}
+	public void setBonusActionPoints(int bonusActionPoints) {
+		this.bonusActionPoints = bonusActionPoints;
+	}
+	public int getActRoom() {
+		return actRoom;
+	}
+	public void setActRoom(int actRoom) {
+		this.actRoom = actRoom;
+	}
+	public int getSpeed() {
+		return speed;
+	}
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+	public int getBonusSpeed() {
+		return bonusSpeed;
+	}
+	public void setBonusSpeed(int bonusSpeed) {
+		this.bonusSpeed = bonusSpeed;
+	}
+	public int getEloquence() {
+		return eloquence;
+	}
+	public void setEloquence(int eloquence) {
+		this.eloquence = eloquence;
+	}
+	public int getBonusEloquence() {
+		return bonusEloquence;
+	}
+	public void setBonusEloquence(int bonusEloquence) {
+		this.bonusEloquence = bonusEloquence;
+	}
+	public int getCharm() {
+		return charm;
+	}
+	public void setCharm(int charm) {
+		this.charm = charm;
+	}
+	public int getBonusCharm() {
+		return bonusCharm;
+	}
+	public void setBonusCharm(int bonusCharm) {
+		this.bonusCharm = bonusCharm;
+	}
+	public int getIntelligence() {
+		return intelligence;
+	}
+	public void setIntelligence(int intelligence) {
+		this.intelligence = intelligence;
+	}
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
+	public void setName(String name) { //TODO: Save user every time, something changed
 		this.name = name;
 	}
 	public String getKlasse() {
-		return klasse;
+		return profession;
 	}
 	public int getBonus_health() {
-		return bonus_health;
+		return bonusHealth;
 	}
 	public void setBonus_health(int bonus_health) {
-		this.bonus_health = bonus_health;
+		this.bonusHealth = bonus_health;
 	}
 	public int getBonus_ap() {
-		return bonus_ap;
+		return bonusActionPoints;
 	}
 	public void setBonus_ap(int bonus_ap) {
-		this.bonus_ap = bonus_ap;
+		this.bonusActionPoints = bonus_ap;
 	}
 	public void setKlasse(String klasse) {
-		this.klasse = klasse;
+		this.profession = klasse;
 	}
 	public String getRasse() {
-		return rasse;
+		return race;
 	}
 	public void setRasse(String rasse) {
-		this.rasse = rasse;
+		this.race = rasse;
 	}
 	public int getHealth() {
-		return health;
+		return healthPoints;
 	}
 	public void setHealth(int health) {
-		this.health = health;
+		this.healthPoints = health;
 	}
 	public int getAp() {
-		return ap;
+		return actionPoints;
 	}
 	public void setAp(int ap) {
-		this.ap = ap;
+		this.actionPoints = ap;
 	}
 	public int getAct_room() {
-		return act_room;
+		return actRoom;
 	}
-	public void setAct_room(int act_room) {
-		this.act_room = act_room;
+	public void setAct_room(int actRoom) {
+		this.actRoom = actRoom;
 	}
-	public void saveUser(){
+	public void saveUser() throws IOException{
 		OutputStream savedata = null;
-
-		try
-		{
 		  savedata = new FileOutputStream(new File(MainMenu.getPath(),"user"));
 		  ObjectOutputStream saveobject = new ObjectOutputStream(savedata);
 		  saveobject.writeObject(this);
 		  saveobject.close();
 		  savedata.close();
-		}
-		catch ( IOException e ) { System.err.println( e ); }
 	}
 	
 }
