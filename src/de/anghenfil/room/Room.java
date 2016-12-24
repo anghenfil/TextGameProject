@@ -1,13 +1,11 @@
 package de.anghenfil.room;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
-import org.apache.commons.lang3.SystemUtils;
-import de.anghenfil.mainmenu.MainMenu;
+import de.anghenfil.maingame.MainGame;
 import de.anghenfil.sql.SqlTools;
 
 public class Room {
@@ -17,13 +15,13 @@ public class Room {
 	private int nextRoomE = 0;
 	private int nextRoomW = 0;
 	private String roomDescription = "unset";
-	private int[] items = null;
+	private ArrayList<Integer> items = null;
 	
-	public int[] getItems() {
+	public ArrayList<Integer> getItems() {
 		return items;
 	}
-	public void setItems(int[] items) {
-		this.items = items;
+	public void setItems(ArrayList<Integer> itemsE) {
+		this.items = itemsE;
 	}
 	public int getRoomID() {
 		return roomID;
@@ -63,13 +61,14 @@ public class Room {
 	}public Room loadRoom(int roomID){
 		Room room = new Room();
 		Connection c = null;
-		Statement stmt = null;
 		String[] items = null;
+		PreparedStatement query = null;
 		ArrayList<Integer> itemsE = new ArrayList<Integer>();
 	    try {
 	    	c = SqlTools.getConnection();
-	        stmt = c.createStatement();
-	        ResultSet rs = stmt.executeQuery("SELECT * FROM rooms"); //Change * later to the final columns
+	        query = c.prepareStatement("SELECT * FROM rooms WHERE roomID = ?");
+	        query.setInt(1, roomID);
+	        ResultSet rs = query.executeQuery();
 	        while(rs.next()){
 	        	room.setRoomID(rs.getInt("roomID"));
 	        	room.setNextRoomE(rs.getInt("nextRoomE"));
@@ -77,20 +76,26 @@ public class Room {
 	        	room.setNextRoomN(rs.getInt("nextRoomN"));
 	        	room.setNextRoomS(rs.getInt("nextRoomS"));
 	        	room.setRoomDescription(rs.getString("roomDescription"));
-	        	items = rs.getString("roomItems").split(","); //TODO: ADD ERROR HANDLING IF THERE ARE NO ITEMS
-	        	System.out.println(rs.getString("roomItems"));
-	        	for(int i = 0;i<=items.length;i++){
-	        		itemsE.add(Integer.parseInt(items[i]));
+	        	try{
+	        		items = rs.getString("roomItems").split(","); //TODO: ADD ERROR HANDLING IF THERE ARE NO ITEMS
+	        		for(int i = 0;i<items.length;i++){
+	        			itemsE.add(Integer.parseInt(items[i]));
+	        		}
+	        	room.setItems(itemsE);
+	        	}catch(Exception e){
+	        		room.setItems(null);
 	        	}
-	        	System.out.println(itemsE);
+	        	items = null;
+	        	itemsE = new ArrayList<Integer>();
 	        }
 	        rs.close();
-	        stmt.close();
 	        c.close();
 	      } catch ( Exception e ) {
 	        System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	        System.exit(0);
 	      }
+	    MainGame.setRoom(room);
+	    MainGame.getUser().setAct_room(room.getRoomID());
 	    return room;
 	}
 
