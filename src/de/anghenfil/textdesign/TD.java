@@ -31,7 +31,7 @@ public class TD {
 		}
 	}public static void error(String content){
 			de.anghenfil.gui.Window window = MainGame.getWindow();
-			window.addText("<b>"+content+"</b>");
+			window.addText("<b color='red'>"+content+"</b>");
 	}public static void error(){
 		error("Deine Antwort konnte nicht erkannt werden. Bitte wiederhole deine Eingabe!");
 	}
