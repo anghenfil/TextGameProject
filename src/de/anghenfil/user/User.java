@@ -28,6 +28,7 @@ public class User implements Serializable{
 	int bonusCharm;
 	int intelligence;
 	ArrayList<Integer> items = new ArrayList<Integer>();
+	ArrayList<Integer> brackets = new ArrayList<Integer>();
 	public String getProfession() {
 		return profession;
 	}
@@ -164,6 +165,24 @@ public class User implements Serializable{
 			contains = false;
 		}
 		return contains;
+	}
+	public void addItem(int itemID){
+		this.items.add(itemID);
+	}
+	public void removeItem(int itemID){
+		this.items.remove(itemID);
+	}
+	public boolean hasBracket(int bracketID){
+		boolean contains;
+		if(this.items.contains(bracketID)){
+			contains = true;
+		}else{
+			contains = false;
+		}
+		return contains;
+	}
+	public void addBracket(int bracketID){
+		this.items.add(bracketID);
 	}
 	
 }
