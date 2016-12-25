@@ -13,9 +13,6 @@ public class MainControl {
 			Window window = MainGame.getWindow();
 			Room room = MainGame.getRoom();
 			
-			//Execute CustomCode from RoomScripts
-			RoomScripts.customCode(room.getRoomID());
-			
 			//Handle input
 			rawinput = rawinput.toLowerCase();
 			input = rawinput.split("\\s");
@@ -52,6 +49,9 @@ public class MainControl {
 					}else{
 					window.addText("Gehe nach Norden ...");
 					room = room.loadRoom(room.getNextRoomN());
+					//Execute CustomCode from RoomScripts
+					RoomScripts.customCode(room.getRoomID());
+					TD.headline(room.getRoomName());
 					TD.description(room.getRoomDescription());
 					}
 					break;
@@ -61,6 +61,9 @@ public class MainControl {
 					}else{
 					window.addText("Gehe nach Süden ...");
 					room = room.loadRoom(room.getNextRoomS());
+					//Execute CustomCode from RoomScripts
+					RoomScripts.customCode(room.getRoomID());
+					TD.headline(room.getRoomName());
 					TD.description(room.getRoomDescription());
 					}
 					break;
@@ -70,15 +73,21 @@ public class MainControl {
 					}else{
 					window.addText("Gehe nach Westen ...");
 					room = room.loadRoom(room.getNextRoomW());
+					//Execute CustomCode from RoomScripts
+					RoomScripts.customCode(room.getRoomID());
+					TD.headline(room.getRoomName());
 					TD.description(room.getRoomDescription());
 					}
 					break;
 				case "osten":
 					if(room.getNextRoomE() == 0){
-						TD.error("In �stlicher Richtung geht es hier nicht weiter.");
+						TD.error("In östlicher Richtung geht es hier nicht weiter.");
 					}else{
 					window.addText("Gehe nach Osten ...");
 					room = room.loadRoom(room.getNextRoomE());
+					//Execute CustomCode from RoomScripts
+					RoomScripts.customCode(room.getRoomID());
+					TD.headline(room.getRoomName());
 					TD.description(room.getRoomDescription());
 					}
 					break;
