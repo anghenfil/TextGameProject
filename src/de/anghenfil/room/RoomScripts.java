@@ -50,6 +50,10 @@ public class RoomScripts{
 						+ "Gelangweilt schaue ich auf die tickende Pendeluhr an der Wand. «Schon fünf vor acht und noch immer kein neuer Fall ...»");
 			}
 			break;
+		case 2:
+			if(!MainGame.getUser().hasBracket(1)){
+				MainGame.getUser().addBracket(1);
+			}
 		}
 	}
 }
