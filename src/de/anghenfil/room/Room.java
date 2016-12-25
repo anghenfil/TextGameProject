@@ -14,6 +14,7 @@ public class Room {
 	private int nextRoomS = 0;
 	private int nextRoomE = 0;
 	private int nextRoomW = 0;
+	private String roomName = "unset";
 	private String roomDescription = "unset";
 	private ArrayList<Integer> items = null;
 	
@@ -75,6 +76,7 @@ public class Room {
 	        	room.setNextRoomW(rs.getInt("nextRoomW"));
 	        	room.setNextRoomN(rs.getInt("nextRoomN"));
 	        	room.setNextRoomS(rs.getInt("nextRoomS"));
+	        	room.setRoomName(rs.getString("roomName"));
 	        	room.setRoomDescription(rs.getString("roomDescription"));
 	        	try{
 	        		items = rs.getString("roomItems").split(","); //TODO: ADD ERROR HANDLING IF THERE ARE NO ITEMS
@@ -97,6 +99,12 @@ public class Room {
 	    MainGame.setRoom(room);
 	    MainGame.getUser().setAct_room(room.getRoomID());
 	    return room;
+	}
+	public String getRoomName() {
+		return roomName;
+	}
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
 	}
 
 }
