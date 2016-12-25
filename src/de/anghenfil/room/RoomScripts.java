@@ -54,6 +54,7 @@ public class RoomScripts{
 			if(!MainGame.getUser().hasBracket(1)){
 				MainGame.getUser().addBracket(1);
 			}
+			break;
 		}
 	}
 }
