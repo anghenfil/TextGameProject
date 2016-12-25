@@ -74,8 +74,8 @@ public class MainControl {
 					window.addText("Gehe nach Westen ...");
 					room = room.loadRoom(room.getNextRoomW());
 					//Execute CustomCode from RoomScripts
-					RoomScripts.customCode(room.getRoomID());
 					TD.headline(room.getRoomName());
+					RoomScripts.customCode(room.getRoomID());
 					TD.description(room.getRoomDescription());
 					}
 					break;

@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import de.anghenfil.gui.Window;
 import de.anghenfil.room.Room;
+import de.anghenfil.room.RoomScripts;
 import de.anghenfil.textdesign.TD;
 
 public class MainGame {
@@ -19,6 +20,8 @@ public class MainGame {
 					user = UserManager.loadUser();
 					room = new Room();
 					room = room.loadRoom(user.getAct_room()); //Load last visited Room from User object
+					TD.headline(room.getRoomName());
+					RoomScripts.customCode(room.getRoomID());
 					TD.description(room.getRoomDescription()); //Show actual room Description
 				} catch (Exception e) {
 					e.printStackTrace();
