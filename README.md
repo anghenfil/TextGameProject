@@ -20,10 +20,12 @@ Funktionen
 Raumdatenbank Status
 -------------
 <b>Wohnung des Detektives: </b>fast abgeschlossen<br>
+
 ----------
 Story Status
 -------------
 <b>Kapitel 1: </b>In arbeit<br>
+
 ----------
 FAQ
 -------------
