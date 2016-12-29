@@ -46,12 +46,12 @@ Gerne. Klone einfach diese Repo, arbeite mit und erstelle eine Pull-Request. Ein
 
 > Wo kann ich den aktuellen Stand des Spiels testen?
 
-Aktuell, gibt es noch keine Vorabversion. Allerdings wird es in ca. einer Woche eine erste Vorabversion zum Download geben.
+Die erste Vorabversion kann <b><a href="https://drive.google.com/uc?export=download&id=0B0z1hryt9EP8M1pxdWZpbEhXbUE">hier</a></b> heruntergeladen werden. Momentan kann nur die Detektivwohnung betreten werden.
 
 >**Vorabversion starten**<br>
 > 1. Installiere Java, falls noch nicht geschehen.<br>
 > 2. Öffne ein Terminal (oder die CMD unter Windows) und gehe in das Verzeichnis, in der die heruntergeladene .jar Datei liegt. (z.B. `cd C:\Users\XXX\Downloads`)<br>
-> 3. Rufe `java -jar textgameproject.jar`auf.<br>
+> 3. Rufe `java -jar tgp.jar`auf.<br>
 
  Es wird regelmäßig neue Vorabversionen geben, ihr könnt das Spiel aber natürlich auch selbst kompilieren.
 
