@@ -25,6 +25,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import de.anghenfil.maingame.MainGame;
+import de.anghenfil.messages.Messages;
 import de.anghenfil.user.User;
 import de.anghenfil.user.UserManager;
 
@@ -88,34 +89,34 @@ public class CharacterCreation {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmTheTextgameproject.setIconImage(Toolkit.getDefaultToolkit().getImage(CharacterCreation.class.getResource("/TGP Test.png")));
-		frmTheTextgameproject.setTitle("The TextGameProject 1.0");
+		frmTheTextgameproject.setIconImage(Toolkit.getDefaultToolkit().getImage(CharacterCreation.class.getResource("/TGP Test.png"))); //$NON-NLS-1$
+		frmTheTextgameproject.setTitle(Messages.getString("General.gametitel")); //$NON-NLS-1$
 		frmTheTextgameproject.setResizable(false);
 		frmTheTextgameproject.setBounds(100, 100, 750, 462);
 		frmTheTextgameproject.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
-		JLabel lblCharaktererstellung = new JLabel("Charaktererstellung");
-		lblCharaktererstellung.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		JLabel lblCharaktererstellung = new JLabel(Messages.getString("CharCre.headline")); //$NON-NLS-1$
+		lblCharaktererstellung.setFont(new Font("Tahoma", Font.PLAIN, 22)); //$NON-NLS-1$
 		
-		JLabel lblCharaktername = new JLabel("Charaktername");
-		lblCharaktername.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		JLabel lblCharaktername = new JLabel(Messages.getString("CharCre.charname")); //$NON-NLS-1$
+		lblCharaktername.setFont(new Font("Tahoma", Font.PLAIN, 13)); //$NON-NLS-1$
 		
 		textField = new JTextField();
 		textField.setColumns(10);
 		unvergeben = new JTextField();
-		unvergeben.setBackground(UIManager.getColor("Label.background"));
+		unvergeben.setBackground(UIManager.getColor("Label.background")); //$NON-NLS-1$
 		unvergeben.setHorizontalAlignment(SwingConstants.CENTER);
 		unvergeben.setEditable(false);
-		unvergeben.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		unvergeben.setFont(new Font("Tahoma", Font.PLAIN, 10)); //$NON-NLS-1$
 		unvergeben.setColumns(10);
-		unvergeben.setText("" + free_points);
-		JLabel lblRasse = new JLabel("Rasse");
-		lblRasse.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		unvergeben.setText("" + free_points); //$NON-NLS-1$
+		JLabel lblRasse = new JLabel(Messages.getString("CharCre.race")); //$NON-NLS-1$
+		lblRasse.setFont(new Font("Tahoma", Font.PLAIN, 13)); //$NON-NLS-1$
 		
 		JList list = new JList();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Mensch", "Zombie", "Sidekick"};
+			String[] values = new String[] {Messages.getString("CharCre.human"), Messages.getString("CharCre.zombie"), Messages.getString("CharCre.sidekick")}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			public int getSize() {
 				return values.length;
 			}
@@ -128,19 +129,19 @@ public class CharacterCreation {
 		list_1.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 				//TODO: Unblock skilling if professioen was selected
-				if(list_1.getSelectedValue() == "Student"){
+				if(list_1.getSelectedValue() == Messages.getString("CharCre.student")){ //$NON-NLS-1$
 					df_hp = student_df_hp;
 					df_ap = student_df_ap;
 					df_speed = student_df_speed;
 					df_eloquence = student_df_eloquence;
 				}
-				if(list_1.getSelectedValue() == "Arzt"){
+				if(list_1.getSelectedValue() == Messages.getString("CharCre.doc")){ //$NON-NLS-1$
 					df_hp = arzt_df_hp;
 					df_ap =	arzt_df_ap;
 					df_speed = arzt_df_speed;
 					df_eloquence = arzt_df_eloquence;
 				}
-				if(list_1.getSelectedValue() == "Schriftsteller"){
+				if(list_1.getSelectedValue() == Messages.getString("CharCre.author")){ //$NON-NLS-1$
 					df_hp = schriftsteller_df_hp;
 					df_ap = schriftsteller_df_ap;
 					df_speed = schriftsteller_df_speed;
@@ -155,7 +156,7 @@ public class CharacterCreation {
 			}
 		});
 		list_1.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Student", "Arzt", "Schriftsteller"};
+			String[] values = new String[] {Messages.getString("CharCre.student"), Messages.getString("CharCre.doc"), Messages.getString("CharCre.author")}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			public int getSize() {
 				return values.length;
 			}
@@ -165,26 +166,26 @@ public class CharacterCreation {
 		});
 		list_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
-		JLabel lblKlasse = new JLabel("Beruf");
-		lblKlasse.setFont(new Font("Dialog", Font.PLAIN, 13));
+		JLabel lblKlasse = new JLabel(Messages.getString("CharCre.profession")); //$NON-NLS-1$
+		lblKlasse.setFont(new Font("Dialog", Font.PLAIN, 13)); //$NON-NLS-1$
 		
 		table = new JTable();
 		table.setRowHeight(22);
 		table.setRequestFocusEnabled(false);
 		table.setRowSelectionAllowed(false);
-		table.setBackground(UIManager.getColor("Button.background"));
+		table.setBackground(UIManager.getColor("Button.background")); //$NON-NLS-1$
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"", "Basic", "Bonus", "Gesamt"},
-				{"Health Points (HP)", null, null, null},
-				{"Action Points (AP)", null, null, null},
-				{"Speed (SPD)", null, null, null},
-				{"Eloquence (EQ)", null, null, null},
-				{"Charm (CH)", null, null, null},
-				{"Intelligence (INT)", null, null, null},
+				{"", Messages.getString("CharCre.basic"), Messages.getString("CharCre.bonus"), Messages.getString("CharCre.total")}, //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+				{Messages.getString("CharCre.hp"), null, null, null}, //$NON-NLS-1$
+				{Messages.getString("CharCre.ap"), null, null, null}, //$NON-NLS-1$
+				{Messages.getString("CharCre.spd"), null, null, null}, //$NON-NLS-1$
+				{Messages.getString("CharCre.eq"), null, null, null}, //$NON-NLS-1$
+				{Messages.getString("CharCre.ch"), null, null, null}, //$NON-NLS-1$
+				{Messages.getString("CharCre.int"), null, null, null}, //$NON-NLS-1$
 			},
 			new String[] {
-				"", "Basic", "Bonuspunkte", "Gesamt"
+				"", Messages.getString("CharCre.basic"), Messages.getString("CharCre.bonuspoints"), Messages.getString("CharCre.total") //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
@@ -203,14 +204,14 @@ public class CharacterCreation {
 		table.getColumnModel().getColumn(3).setResizable(false);
 		table.getColumnModel().getColumn(3).setPreferredWidth(54);
 		
-		JButton health_points_up = new JButton("");
-		health_points_up.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p up.png")));
+		JButton health_points_up = new JButton(""); //$NON-NLS-1$
+		health_points_up.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p up.png"))); //$NON-NLS-1$
 		health_points_up.setPreferredSize(new Dimension(16, 16));
 		health_points_up.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(free_points > 0){
 					free_points = free_points -1;
-					unvergeben.setText("" + free_points);
+					unvergeben.setText("" + free_points); //$NON-NLS-1$
 					points_hp = points_hp + 1;
 					bonus_hp = (points_hp*10); 
 					table.getModel().setValueAt(bonus_hp, 1, 2);
@@ -218,14 +219,14 @@ public class CharacterCreation {
 				}
 			}
 		});
-		health_points_up.setFont(new Font("Dialog", Font.BOLD, 9));
+		health_points_up.setFont(new Font("Dialog", Font.BOLD, 9)); //$NON-NLS-1$
 		
-		JButton action_points_up = new JButton("");
+		JButton action_points_up = new JButton(""); //$NON-NLS-1$
 		action_points_up.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(free_points > 0){
 					free_points = free_points -1;
-					unvergeben.setText("" + free_points);
+					unvergeben.setText("" + free_points); //$NON-NLS-1$
 					points_ap = points_ap + 1;
 					bonus_ap = (points_ap*10); 
 					table.getModel().setValueAt(bonus_ap, 2, 2);
@@ -233,16 +234,16 @@ public class CharacterCreation {
 				}
 			}
 		});
-		action_points_up.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p up.png")));
+		action_points_up.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p up.png"))); //$NON-NLS-1$
 		action_points_up.setPreferredSize(new Dimension(16, 16));
-		action_points_up.setFont(new Font("Dialog", Font.BOLD, 9));
+		action_points_up.setFont(new Font("Dialog", Font.BOLD, 9)); //$NON-NLS-1$
 		
-		JButton action_points_down = new JButton("");
+		JButton action_points_down = new JButton(""); //$NON-NLS-1$
 		action_points_down.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(points_ap > 0){
 					free_points = free_points + 1;
-					unvergeben.setText("" + free_points);
+					unvergeben.setText("" + free_points); //$NON-NLS-1$
 					points_ap = points_ap - 1;
 					bonus_ap = (points_ap*10); 
 					table.getModel().setValueAt(bonus_ap, 2, 2);
@@ -250,16 +251,16 @@ public class CharacterCreation {
 				}
 			}
 		});
-		action_points_down.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p down.png")));
+		action_points_down.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p down.png"))); //$NON-NLS-1$
 		action_points_down.setPreferredSize(new Dimension(16, 16));
-		action_points_down.setFont(new Font("Dialog", Font.BOLD, 9));
+		action_points_down.setFont(new Font("Dialog", Font.BOLD, 9)); //$NON-NLS-1$
 		
-		JButton health_points_down = new JButton("");
+		JButton health_points_down = new JButton(""); //$NON-NLS-1$
 		health_points_down.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(points_hp > 0){
 					free_points = free_points + 1;
-					unvergeben.setText("" + free_points);
+					unvergeben.setText("" + free_points); //$NON-NLS-1$
 					points_hp = points_hp - 1;
 					bonus_hp = (points_hp*10); 
 					table.getModel().setValueAt(bonus_hp, 1, 2);
@@ -267,14 +268,14 @@ public class CharacterCreation {
 				}
 			}
 		});
-		health_points_down.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p down.png")));
+		health_points_down.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p down.png"))); //$NON-NLS-1$
 		health_points_down.setPreferredSize(new Dimension(16, 16));
-		health_points_down.setFont(new Font("Dialog", Font.BOLD, 9));
+		health_points_down.setFont(new Font("Dialog", Font.BOLD, 9)); //$NON-NLS-1$
 		
 		
-		JLabel lblFrei = new JLabel("Frei");
+		JLabel lblFrei = new JLabel(Messages.getString("CharCre.free")); //$NON-NLS-1$
 		
-		JButton btnCharakterErstellen = new JButton("Charakter erstellen");
+		JButton btnCharakterErstellen = new JButton(Messages.getString("CharCre.createchar")); //$NON-NLS-1$
 		btnCharakterErstellen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<String> errorsrc = new ArrayList<String>();
@@ -301,16 +302,16 @@ public class CharacterCreation {
 				list_1.setBackground(Color.WHITE);
 				
 				if(!errorsrc.isEmpty()){
-					if(errorsrc.contains("name")){
+					if(errorsrc.contains("name")){ //$NON-NLS-1$
 						textField.setBackground(Color.RED);
 					}
-					if(errorsrc.contains("free_points")){
+					if(errorsrc.contains("free_points")){ //$NON-NLS-1$
 						unvergeben.setBackground(Color.RED);
 					}
-					if(errorsrc.contains("race")){
+					if(errorsrc.contains("race")){ //$NON-NLS-1$
 						list.setBackground(Color.RED);
 					}
-					if(errorsrc.contains("profession")){
+					if(errorsrc.contains("profession")){ //$NON-NLS-1$
 						list_1.setBackground(Color.RED);
 					}
 				}else{
@@ -340,12 +341,12 @@ public class CharacterCreation {
 			}
 		});
 		
-		JButton speed_up = new JButton("");
+		JButton speed_up = new JButton(""); //$NON-NLS-1$
 		speed_up.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(free_points > 0){
 					free_points = free_points - 1;
-					unvergeben.setText("" + free_points);
+					unvergeben.setText("" + free_points); //$NON-NLS-1$
 					points_speed = points_speed + 1;
 					bonus_speed = (points_speed*10); 
 					table.getModel().setValueAt(bonus_speed, 3, 2);
@@ -353,16 +354,16 @@ public class CharacterCreation {
 				}
 			}
 		});
-		speed_up.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p up.png")));
+		speed_up.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p up.png"))); //$NON-NLS-1$
 		speed_up.setPreferredSize(new Dimension(16, 16));
-		speed_up.setFont(new Font("Dialog", Font.BOLD, 9));
+		speed_up.setFont(new Font("Dialog", Font.BOLD, 9)); //$NON-NLS-1$
 		
-		JButton eloquence_up = new JButton("");
+		JButton eloquence_up = new JButton(""); //$NON-NLS-1$
 		eloquence_up.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				if(free_points > 0){
 					free_points = free_points -1;
-					unvergeben.setText("" + free_points);
+					unvergeben.setText("" + free_points); //$NON-NLS-1$
 					points_eloquence = points_eloquence + 1;
 					bonus_eloquence = (points_eloquence*10); 
 					table.getModel().setValueAt(bonus_eloquence, 4, 2);
@@ -370,16 +371,16 @@ public class CharacterCreation {
 				}
 			}
 		});
-		eloquence_up.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p up.png")));
+		eloquence_up.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p up.png"))); //$NON-NLS-1$
 		eloquence_up.setPreferredSize(new Dimension(16, 16));
-		eloquence_up.setFont(new Font("Dialog", Font.BOLD, 9));
+		eloquence_up.setFont(new Font("Dialog", Font.BOLD, 9)); //$NON-NLS-1$
 		
-		JButton charm_up = new JButton("");
+		JButton charm_up = new JButton(""); //$NON-NLS-1$
 		charm_up.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				if(free_points > 0){
 					free_points = free_points -1;
-					unvergeben.setText("" + free_points);
+					unvergeben.setText("" + free_points); //$NON-NLS-1$
 					points_charm = points_charm + 1;
 					bonus_charm = (points_charm*10); 
 					table.getModel().setValueAt(bonus_charm, 5, 2);
@@ -387,16 +388,16 @@ public class CharacterCreation {
 				}
 			}
 		});
-		charm_up.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p up.png")));
+		charm_up.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p up.png"))); //$NON-NLS-1$
 		charm_up.setPreferredSize(new Dimension(16, 16));
-		charm_up.setFont(new Font("Dialog", Font.BOLD, 9));
+		charm_up.setFont(new Font("Dialog", Font.BOLD, 9)); //$NON-NLS-1$
 		
-		JButton intelligence_up = new JButton("");
+		JButton intelligence_up = new JButton(""); //$NON-NLS-1$
 		intelligence_up.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				if(free_points > 0){
 					free_points = free_points -1;
-					unvergeben.setText("" + free_points);
+					unvergeben.setText("" + free_points); //$NON-NLS-1$
 					points_intelligence = points_intelligence + 1;
 					bonus_intelligence = (points_intelligence*10); 
 					table.getModel().setValueAt(bonus_intelligence, 6, 2);
@@ -404,16 +405,16 @@ public class CharacterCreation {
 				}
 			}
 		});
-		intelligence_up.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p up.png")));
+		intelligence_up.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p up.png"))); //$NON-NLS-1$
 		intelligence_up.setPreferredSize(new Dimension(16, 16));
-		intelligence_up.setFont(new Font("Dialog", Font.BOLD, 9));
+		intelligence_up.setFont(new Font("Dialog", Font.BOLD, 9)); //$NON-NLS-1$
 		
-		JButton speed_down = new JButton("");
+		JButton speed_down = new JButton(""); //$NON-NLS-1$
 		speed_down.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(points_speed > 0){
 					free_points = free_points + 1;
-					unvergeben.setText("" + free_points);
+					unvergeben.setText("" + free_points); //$NON-NLS-1$
 					points_speed = points_speed - 1;
 					bonus_speed = (points_speed*10); 
 					table.getModel().setValueAt(bonus_speed, 3, 2);
@@ -421,16 +422,16 @@ public class CharacterCreation {
 				}
 			}
 		});
-		speed_down.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p down.png")));
+		speed_down.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p down.png"))); //$NON-NLS-1$
 		speed_down.setPreferredSize(new Dimension(16, 16));
-		speed_down.setFont(new Font("Dialog", Font.BOLD, 9));
+		speed_down.setFont(new Font("Dialog", Font.BOLD, 9)); //$NON-NLS-1$
 		
-		JButton eloquence_down = new JButton("");
+		JButton eloquence_down = new JButton(""); //$NON-NLS-1$
 		eloquence_down.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				if(points_eloquence > 0){
 					free_points = free_points + 1;
-					unvergeben.setText("" + free_points);
+					unvergeben.setText("" + free_points); //$NON-NLS-1$
 					points_eloquence = points_eloquence - 1;
 					bonus_eloquence = (points_eloquence*10); 
 					table.getModel().setValueAt(bonus_eloquence, 4, 2);
@@ -438,16 +439,16 @@ public class CharacterCreation {
 				}
 			}
 		});
-		eloquence_down.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p down.png")));
+		eloquence_down.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p down.png"))); //$NON-NLS-1$
 		eloquence_down.setPreferredSize(new Dimension(16, 16));
-		eloquence_down.setFont(new Font("Dialog", Font.BOLD, 9));
+		eloquence_down.setFont(new Font("Dialog", Font.BOLD, 9)); //$NON-NLS-1$
 		
-		JButton charm_down = new JButton("");
+		JButton charm_down = new JButton(""); //$NON-NLS-1$
 		charm_down.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				if(points_charm > 0){
 					free_points = free_points + 1;
-					unvergeben.setText("" + free_points);
+					unvergeben.setText("" + free_points); //$NON-NLS-1$
 					points_charm = points_charm - 1;
 					bonus_charm = (points_charm*10); 
 					table.getModel().setValueAt(bonus_charm, 5, 2);
@@ -455,16 +456,16 @@ public class CharacterCreation {
 				}
 			}
 		});
-		charm_down.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p down.png")));
+		charm_down.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p down.png"))); //$NON-NLS-1$
 		charm_down.setPreferredSize(new Dimension(16, 16));
-		charm_down.setFont(new Font("Dialog", Font.BOLD, 9));
+		charm_down.setFont(new Font("Dialog", Font.BOLD, 9)); //$NON-NLS-1$
 		
-		JButton intelligence_down = new JButton("");
+		JButton intelligence_down = new JButton(""); //$NON-NLS-1$
 		intelligence_down.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				if(points_intelligence > 0){
 					free_points = free_points + 1;
-					unvergeben.setText("" + free_points);
+					unvergeben.setText("" + free_points); //$NON-NLS-1$
 					points_intelligence = points_intelligence - 1;
 					bonus_intelligence = (points_intelligence*10); 
 					table.getModel().setValueAt(bonus_intelligence, 6, 2);
@@ -472,9 +473,9 @@ public class CharacterCreation {
 				}
 			}
 		});
-		intelligence_down.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p down.png")));
+		intelligence_down.setIcon(new ImageIcon(CharacterCreation.class.getResource("/10p down.png"))); //$NON-NLS-1$
 		intelligence_down.setPreferredSize(new Dimension(16, 16));
-		intelligence_down.setFont(new Font("Dialog", Font.BOLD, 9));
+		intelligence_down.setFont(new Font("Dialog", Font.BOLD, 9)); //$NON-NLS-1$
 		
 		GroupLayout groupLayout = new GroupLayout(frmTheTextgameproject.getContentPane());
 		groupLayout.setHorizontalGroup(
