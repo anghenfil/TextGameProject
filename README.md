@@ -51,7 +51,7 @@ Die erste Vorabversion kann <b><a href="https://drive.google.com/uc?export=downl
 >**Vorabversion starten**<br>
 > 1. Installiere Java, falls noch nicht geschehen.<br>
 > 2. Öffne ein Terminal (oder die CMD unter Windows) und gehe in das Verzeichnis, in der die heruntergeladene .jar Datei liegt. (z.B. `cd C:\Users\XXX\Downloads`)<br>
-> 3. Rufe `java -jar tgp.jar`auf.<br>
+> 3. Rufe `java -jar tgp-alpha.jar`auf.<br>
 
  Es wird regelmäßig neue Vorabversionen geben, ihr könnt das Spiel aber natürlich auch selbst kompilieren.
 
