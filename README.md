@@ -1,20 +1,29 @@
-Willkommen zum TextGameProject
+Willkommen zum The TextGameProject
 ===================
-The TextGameProject ist ein Spiel, welches nur in der Konsole gespielt wird. Es ist angelehnt an ältere Konsolenspiele wie Zork. Es befindet sich noch in der Entwicklung, mit einer ersten Version kann in einigen Monaten gerechnet werden.
+The TextGameProject ist ein Spiel, welches nur in der Konsole gespielt wird. Es ist angelehnt an ältere Konsolenspiele wie Zork. Es befindet sich noch in der Entwicklung, mit einer ersten Version kann in einigen Monaten gerechnet werden. In The TextGameProject schlüpft ihr in die Rolle eines Detektives, welcher einige Interessante Fälle lösen muss.
 
 ----------
 Funktionen
 -------------
 <b>Hauptmenü: </b>geplant<br>
 <b>Updater: </b>geplant<br>
-<b>Charaktererstellung: </b>vorläufig Abgeschlossen<br>
-<b>Room-System (mit SQL): </b>in Arbeit<br>
-<b>Hauptsteuerung: </b>in Arbeit<br>
-<b>Item System (mit SQL): </b>geplant<br>
-<b>Room Scripts: </b>geplant<br>
+<b>Charaktererstellung: </b>Abgeschlossen<br>
+<b>Room-System (mit SQL): </b>Abgeschlossen<br>
+<b>Hauptsteuerung: </b>in Abgeschlossen<br>
+<b>Item System (mit SQL): </b>größtenteils Abgeschlossen<br>
+<b>Room Scripts: </b>Abgeschlossen<br>
 <b>Charaktermenü: </b>geplant<br>
 <b>Kartengenerator: </b>geplant<br>
+<b>Multi-Language-Support: </b>Abgeschlossen (Nur die Übersetzungen fehlen noch)<br>
 
+----------
+Raumdatenbank Status
+-------------
+<b>Wohnung des Detektives: </b>fast abgeschlossen<br>
+----------
+Story Status
+-------------
+<b>Kapitel 1: </b>In arbeit<br>
 ----------
 FAQ
 -------------
