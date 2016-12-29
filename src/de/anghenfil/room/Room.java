@@ -14,8 +14,8 @@ public class Room {
 	private int nextRoomS = 0;
 	private int nextRoomE = 0;
 	private int nextRoomW = 0;
-	private String roomName = "unset";
-	private String roomDescription = "unset";
+	private String roomName = "unset"; //$NON-NLS-1$
+	private String roomDescription = "unset"; //$NON-NLS-1$
 	private ArrayList<Integer> items = null;
 	
 	public ArrayList<Integer> getItems() {
@@ -67,19 +67,19 @@ public class Room {
 		ArrayList<Integer> itemsE = new ArrayList<Integer>();
 	    try {
 	    	c = SqlTools.getConnection();
-	        query = c.prepareStatement("SELECT * FROM rooms WHERE roomID = ?");
+	        query = c.prepareStatement("SELECT * FROM rooms WHERE roomID = ?"); //$NON-NLS-1$
 	        query.setInt(1, roomID);
 	        ResultSet rs = query.executeQuery();
 	        while(rs.next()){
-	        	room.setRoomID(rs.getInt("roomID"));
-	        	room.setNextRoomE(rs.getInt("nextRoomE"));
-	        	room.setNextRoomW(rs.getInt("nextRoomW"));
-	        	room.setNextRoomN(rs.getInt("nextRoomN"));
-	        	room.setNextRoomS(rs.getInt("nextRoomS"));
-	        	room.setRoomName(rs.getString("roomName"));
-	        	room.setRoomDescription(rs.getString("roomDescription"));
+	        	room.setRoomID(rs.getInt("roomID")); //$NON-NLS-1$
+	        	room.setNextRoomE(rs.getInt("nextRoomE")); //$NON-NLS-1$
+	        	room.setNextRoomW(rs.getInt("nextRoomW")); //$NON-NLS-1$
+	        	room.setNextRoomN(rs.getInt("nextRoomN")); //$NON-NLS-1$
+	        	room.setNextRoomS(rs.getInt("nextRoomS")); //$NON-NLS-1$
+	        	room.setRoomName(rs.getString("roomName")); //$NON-NLS-1$
+	        	room.setRoomDescription(rs.getString("roomDescription")); //$NON-NLS-1$
 	        	try{
-	        		items = rs.getString("roomItems").split(","); //TODO: ADD ERROR HANDLING IF THERE ARE NO ITEMS
+	        		items = rs.getString("roomItems").split(","); //TODO: ADD ERROR HANDLING IF THERE ARE NO ITEMS //$NON-NLS-1$ //$NON-NLS-2$
 	        		for(int i = 0;i<items.length;i++){
 	        			itemsE.add(Integer.parseInt(items[i]));
 	        		}
@@ -93,7 +93,7 @@ public class Room {
 	        rs.close();
 	        c.close();
 	      } catch ( Exception e ) {
-	        System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	        System.err.println( e.getClass().getName() + ": " + e.getMessage() ); //$NON-NLS-1$
 	        System.exit(0);
 	      }
 	    MainGame.setRoom(room);

@@ -6,7 +6,7 @@ import de.anghenfil.gui.Window;
 import de.anghenfil.room.Room;
 import de.anghenfil.room.RoomScripts;
 import de.anghenfil.textdesign.TD;
-
+//TODO: export messages in language files -> multi lang support
 public class MainGame {
 	static Room room;
 	static Window window;
