@@ -32,6 +32,9 @@ Screenshots
 <a href="http://i.imgur.com/u8emYSA.png">
   <img src="http://imgur.com/u8emYSAl.png" />
 </a>
+<a href="http://i.imgur.com/lAtV5qx.png">
+  <img src="http://imgur.com/lAtV5qxl.png" />
+</a>
 
 ----------
 FAQ
