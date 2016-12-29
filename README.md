@@ -15,7 +15,7 @@ Funktionen
 <b>Charaktermenü: </b>geplant<br>
 <b>Kartengenerator: </b>geplant<br>
 <b>Multi-Language-Support: </b>Abgeschlossen (Nur die Übersetzungen fehlen noch)<br>
-
+<b>Seiten Info Leisten: </b>geplant<br>
 ----------
 Raumdatenbank Status
 -------------
@@ -25,6 +25,13 @@ Raumdatenbank Status
 Story Status
 -------------
 <b>Kapitel 1: </b>In arbeit<br>
+
+----------
+Screenshots
+-------------
+<a href="http://i.imgur.com/u8emYSA.png">
+  <img src="http://imgur.com/u8emYSAl.png" />
+</a>
 
 ----------
 FAQ
