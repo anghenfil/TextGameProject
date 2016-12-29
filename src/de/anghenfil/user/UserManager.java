@@ -1,178 +1,59 @@
 package de.anghenfil.user;
-import static org.fusesource.jansi.Ansi.ansi;
-
 import java.io.*;
-import java.util.Scanner;
-import de.anghenfil.textdesign.TD;
-import de.anghenfil.maingame.*;
+import java.util.ArrayList;
+
+
+import de.anghenfil.mainmenu.MainMenu;
+import de.anghenfil.messages.Messages;
+import de.anghenfil.textdesign.TDError;
 
 public class UserManager {
 	public static boolean checkUserData(){
 		boolean createnew = false;
+		File datafile1;
 		
-		File datafile1 = new File("TextGameProject/user");
+		datafile1 = new File(MainMenu.getPath(), "user"); //$NON-NLS-1$
 		if(datafile1.exists() && !datafile1.isDirectory()){
 			createnew = false;
 		}else{
 			createnew = true;
 		}
 		return createnew;
-	}public static void loadUser(){
+	}public static User loadUser(){
 		InputStream loaddata = null;
+		File path = null;
+		User user = null;
+		
+		path = new File(MainMenu.getPath(), "user"); //$NON-NLS-1$
 		try{
-			File dir = new File("TextGameProject");
-			dir.mkdir();
-			loaddata = new FileInputStream("TextGameProject/user");
+			loaddata = new FileInputStream(path);
 			ObjectInputStream loadObject = new ObjectInputStream(loaddata);
-			User user = (User) loadObject.readObject();
-			MainGame.play(user);
+			user = (User) loadObject.readObject();
+			loadObject.close();
 		}
-		catch ( IOException e ) { System.err.println( e ); }
-		catch ( ClassNotFoundException e ) { System.err.println( e ); }
+		catch ( IOException e ) { TDError.outError(Messages.getString("Error.error")+e); } //$NON-NLS-1$
+		catch ( ClassNotFoundException e ) { TDError.outError(Messages.getString("Error.userfilecorrupted")); } //$NON-NLS-1$
 		finally { try { loaddata.close(); } catch ( Exception e ) { } }
-	}static void createUser(String name, String rasse, String klasse){
-		User user = new User();
-		user.name = name;
-		user.rasse = rasse;
-		user.klasse = klasse;
-		
-		switch(klasse){
-		case "Magier":
-			user.health = 70;
-			user.ap = 100;
-			break;
-		case "Priester":
-			user.health = 150;
-			user.ap = 70;
-			break;
-		case "Ritter":
-			user.health = 100;
-			user.ap = 50;
-			break;
-		}
-		saveUser(user);
-		
+		return user;
 	}
-	public static void saveUser(User user){
-		OutputStream savedata = null;
-
-		try
-		{
-		  File dir = new File("TextGameProject");
-		  dir.mkdir();
-		  savedata = new FileOutputStream("TextGameProject/user");
-		  ObjectOutputStream saveobject = new ObjectOutputStream(savedata);
-		  saveobject.writeObject(user);
-		}
-		catch ( IOException e ) { System.err.println( e ); }
-		finally { try { savedata.close(); } catch ( Exception e ) { e.printStackTrace(); } }
-	}
-	public static void userCreation(){
-		String name = null;
-		String klasse = null;
-		String rasse = null;
-		String rasse_eingabe;
-		String klasse_eingabe;
-		String choise;
-		String all_correct_eingabe;
-		boolean all_correct = false;
-		boolean choise_valid = false;
-		boolean rasse_valid = false;
-		boolean klasse_valid = false;
+	public static ArrayList<String> checkInput(String name, int fpunkte, String race, String profession) {
+		ArrayList<String> errorsrc = new ArrayList<String>(); //If input is not correct, return source of error (name, free points, race or class)
 		
-		Scanner inputs = new Scanner(System.in); //Define Scanner for Inputs
-		TD.description("Langsam öffnest du die Augen und siehst dich um. Du liegst auf einem Bett und an der gegenüberliegenden Seite des Zimmers siehst du einen alten Mann an einer Feuerstelle stehen. Er dreht sich um und lächelt dich an. \n <<Ah, du bist aufgewacht! Nun, wer bist du?>>");
-		TD.headline("Charaktererstellung");
+		if(name.isEmpty()){ //Chek if name inserted. If not, add name to errorsrc arraylist
+			errorsrc.add("name"); //$NON-NLS-1$
+		}
 		
-		while(all_correct != true){
-		TD.input_question("Wie heißt du?");
-		name = inputs.next();
-		TD.input_question("Hallo "+name+"! Bist du Mensch, Elf oder Halbelf?");
-		while(rasse_valid != true){
-			rasse_eingabe = inputs.next();
-			switch(rasse_eingabe){
-			case "Mensch":
-			case "mensch":
-				rasse = "Mensch";
-				rasse_valid = true;
-				break;
-			case "Elf":
-			case "elf":
-				rasse = "Elf";
-				rasse_valid = true;
-				break;
-			case "Halbelf":
-			case "halbelf":
-				rasse = "Halbelf";
-				rasse_valid = true;
-				break;
-			default: TD.error();
-				TD.input();
-				break;
-			}
+		if(fpunkte != 0){ //Check if fpunkte is 0. If not, add fpunkte to errorsrc arrayList
+			errorsrc.add("fpunkte"); //$NON-NLS-1$
 		}
-		rasse_eingabe = null;
+		if(race == null){ //Chek if race selected. If not, add race to errorsrc arraylist
+			errorsrc.add("race"); //$NON-NLS-1$
+		}
+		if(profession == null){ //Chek if race selected. If not, add klasse to errorsrc arraylist
+			errorsrc.add("profession"); //$NON-NLS-1$
+		}
+		return errorsrc;
 		
-		TD.input_question("Alter Mann: <<Wie du ja sicher weißt, gibt es 3 verschiedene Klassen: Die Magier, die Priester und die Ritter. Jede Klasse hat besondere Eigenschaften und Vorteile. Möchtest du mehr darüber Wissen?>>");
-		while(choise_valid != true){
-			choise = inputs.next();
-			switch(choise){
-			case "Ja":
-			case "ja":
-				choise_valid = true;
-				TD.headline("Der Magier");
-				TD.description("");
-				TD.headline("Der Priester");
-				TD.description("");
-				TD.headline("Der Ritter");
-				TD.description("");
-				break;
-			case "Nein":
-			case "nein":
-				choise_valid = true;
-				break;
-			default: TD.error();
-				TD.input();
-				break;
-			}
-		}
-		TD.input_question("Nun, welcher Klasse gehörst du an?");
-		while(klasse_valid != true){
-			klasse_eingabe = inputs.next();
-			switch(klasse_eingabe){
-			case "Magier":
-			case "magier":
-				klasse = "Magier";
-				klasse_valid = true;
-				break;
-			case "Priester":
-			case "priester":
-				klasse = "Priester";
-				klasse_valid = true;
-				break;
-			case "Ritter":
-			case "ritter":
-				klasse = "Ritter";
-				klasse_valid = true;
-				break;
-			default: TD.error();
-			TD.input();
-			break;
-			}
-		}
-		TD.input_question("Sind diese Angaben korrekt?\nName: "+name+"\nRasse: "+rasse+"\nKlasse: "+klasse);
-		all_correct_eingabe = inputs.next();
-		switch(all_correct_eingabe){
-		case "Ja":
-		case "ja":
-			all_correct = true;
-			break;
-		case "Nein":
-		case "nein":
-			break;
-		}
-		}
-		inputs.close();
-		createUser(name, rasse, klasse); //Create the User and Userfile with name, rasse, klasse
+		
 	}
 }

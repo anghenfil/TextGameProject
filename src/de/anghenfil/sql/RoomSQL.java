@@ -1,43 +1,28 @@
 package de.anghenfil.sql;
 import java.sql.*;
-import de.anghenfil.mainmenu.MainMenu;
-import de.anghenfil.room.Room;
 
 public class RoomSQL {
-	public static Room loadRoom(int roomID){
-		Room room = new Room();
+	public static boolean roomExist(int roomID){
+		boolean Roomexist = false;
 		Connection c = null;
-		Statement stmt = null;
-	    try {
-	        Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:"+MainMenu.getPath()+"\\rooms.db");
-	        
-	        stmt = c.createStatement();
-	        ResultSet rs = stmt.executeQuery("SELECT * FROM rooms"); //Change * later to the final columns
-	        while(rs.next()){
-	        	room.setRoomID(rs.getInt("roomID"));
-	        	room.setNextRoomE(rs.getInt("nextRoomE"));
-	        	room.setNextRoomW(rs.getInt("nextRoomW"));
-	        	room.setNextRoomN(rs.getInt("nextRoomN"));
-	        	room.setNextRoomS(rs.getInt("nextRoomS"));
-	        	room.setRoomDescription(rs.getString("roomDescription"));
-	        }
-	        rs.close();
-	        stmt.close();
-	        c.close();
-	      } catch ( Exception e ) {
-	        System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	        System.exit(0);
-	      }
-	    return room;
-	}
-	public static void saveRoom(int roomID, int nextRoomE, int nextRoomW, int nextRoomN, int nextRoomS, String roomDescription){
-		Connection c = null;
-		
 		try{
-		Class.forName("org.sqlite.JDBC");
-		c = DriverManager.getConnection("jdbc:sqlite:"+MainMenu.getPath()+"\\rooms.db");
-        PreparedStatement ps = c.prepareStatement("INSERT INTO rooms (roomID, nextRoomE, nextRoomW, nextRoomN, nextRoomS, roomDescription) VALUES (?, ?, ?, ?, ?, ?)");
+			c = SqlTools.getConnection();
+			PreparedStatement ps = c.prepareStatement("SELECT * FROM rooms WHERE roomID = ?"); //Change * later to the final columns //$NON-NLS-1$
+			ps.setInt(1, roomID);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()){
+				Roomexist = true;
+			}
+		}catch(Exception e){
+	        System.err.println( e.getClass().getName() + ": " + e.getMessage() ); //$NON-NLS-1$
+	        System.exit(0);
+		}
+		return Roomexist;
+	}public static void saveRoom(int roomID, int nextRoomE, int nextRoomW, int nextRoomN, int nextRoomS, String roomDescription){ //DEPRACED SINCE THERE IS NO LONGER A EDITOR
+		Connection c = null;
+		try{
+		c = SqlTools.getConnection();
+        PreparedStatement ps = c.prepareStatement("INSERT INTO rooms (roomID, nextRoomE, nextRoomW, nextRoomN, nextRoomS, roomDescription) VALUES (?, ?, ?, ?, ?, ?)"); //$NON-NLS-1$
         ps.setInt(1, roomID);
         ps.setInt(2, nextRoomE);
         ps.setInt(3, nextRoomW);
@@ -48,26 +33,8 @@ public class RoomSQL {
         ps.close();
         c.close();
       } catch ( Exception e ) {
-        System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        System.err.println( e.getClass().getName() + ": " + e.getMessage() ); //$NON-NLS-1$
         System.exit(0);
       }
-	}
-	public static boolean roomExist(int roomID){
-		boolean Roomexist = false;
-		Connection c = null;
-		try{
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:"+MainMenu.getPath()+"\\rooms.db");
-			PreparedStatement ps = c.prepareStatement("SELECT * FROM rooms WHERE roomID = ?"); //Change * later to the final columns
-			ps.setInt(1, roomID);
-			ResultSet rs = ps.executeQuery();
-			if(rs.next()){
-				Roomexist = true;
-			}
-		}catch(Exception e){
-	        System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	        System.exit(0);
-		}
-		return Roomexist;
 	}
 }
