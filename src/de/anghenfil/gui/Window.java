@@ -13,6 +13,7 @@ import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import de.anghenfil.maingame.MainControl;
+import de.anghenfil.messages.Messages;
 import de.anghenfil.textdesign.TD;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -44,7 +45,7 @@ public class Window {
 	public void initialize() {
 		frmTheTextgameprojectV = new JFrame();
 		frmTheTextgameprojectV.setPreferredSize(new Dimension(1280, 720));
-		frmTheTextgameprojectV.setTitle("The TextGameProject V.0.1");
+		frmTheTextgameprojectV.setTitle(Messages.getString("General.gametitel")); //$NON-NLS-1$
 		frmTheTextgameprojectV.setBounds(100, 100, 784, 466);
 		frmTheTextgameprojectV.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmTheTextgameprojectV.setVisible(true);
@@ -54,16 +55,16 @@ public class Window {
 		textField.setMargin(new Insets(1, 1, 1, 1));
 		textField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String input = "unset";
+				String input = "unset"; //$NON-NLS-1$
 				input = textField.getText();
 				TD.input(input);
 				MainControl.checkInputs(input);
-				textField.setText(""); //Remove input in textfield after pressing enter
+				textField.setText(""); //Remove input in textfield after pressing enter //$NON-NLS-1$
 			}
 		});
 		textField.setColumns(10);
 		
-		JLabel label = new JLabel(">");
+		JLabel label = new JLabel(">"); //$NON-NLS-1$
 		GroupLayout groupLayout = new GroupLayout(frmTheTextgameprojectV.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -89,7 +90,7 @@ public class Window {
 		);
 		
 		textPane = new JTextPane();
-		textPane.setContentType("text/html");
+		textPane.setContentType("text/html"); //$NON-NLS-1$
 		textPane.setEditorKit(kit);
 		textPane.setDocument(doc);
 		textPane.setMargin(new Insets(1, 1, 1, 1));

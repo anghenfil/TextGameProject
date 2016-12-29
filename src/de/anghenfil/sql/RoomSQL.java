@@ -7,14 +7,14 @@ public class RoomSQL {
 		Connection c = null;
 		try{
 			c = SqlTools.getConnection();
-			PreparedStatement ps = c.prepareStatement("SELECT * FROM rooms WHERE roomID = ?"); //Change * later to the final columns
+			PreparedStatement ps = c.prepareStatement("SELECT * FROM rooms WHERE roomID = ?"); //Change * later to the final columns //$NON-NLS-1$
 			ps.setInt(1, roomID);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()){
 				Roomexist = true;
 			}
 		}catch(Exception e){
-	        System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	        System.err.println( e.getClass().getName() + ": " + e.getMessage() ); //$NON-NLS-1$
 	        System.exit(0);
 		}
 		return Roomexist;
@@ -22,7 +22,7 @@ public class RoomSQL {
 		Connection c = null;
 		try{
 		c = SqlTools.getConnection();
-        PreparedStatement ps = c.prepareStatement("INSERT INTO rooms (roomID, nextRoomE, nextRoomW, nextRoomN, nextRoomS, roomDescription) VALUES (?, ?, ?, ?, ?, ?)");
+        PreparedStatement ps = c.prepareStatement("INSERT INTO rooms (roomID, nextRoomE, nextRoomW, nextRoomN, nextRoomS, roomDescription) VALUES (?, ?, ?, ?, ?, ?)"); //$NON-NLS-1$
         ps.setInt(1, roomID);
         ps.setInt(2, nextRoomE);
         ps.setInt(3, nextRoomW);
@@ -33,7 +33,7 @@ public class RoomSQL {
         ps.close();
         c.close();
       } catch ( Exception e ) {
-        System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        System.err.println( e.getClass().getName() + ": " + e.getMessage() ); //$NON-NLS-1$
         System.exit(0);
       }
 	}
