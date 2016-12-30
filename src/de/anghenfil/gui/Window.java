@@ -41,17 +41,20 @@ public class Window {
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @wbp.parser.entryPoint
 	 */
 	public void initialize() {
 		frmTheTextgameprojectV = new JFrame();
 		frmTheTextgameprojectV.setPreferredSize(new Dimension(1280, 720));
 		frmTheTextgameprojectV.setTitle(Messages.getString("General.gametitel")); //$NON-NLS-1$
-		frmTheTextgameprojectV.setBounds(100, 100, 784, 466);
+		frmTheTextgameprojectV.setBounds(100, 100, 784, 353);
 		frmTheTextgameprojectV.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmTheTextgameprojectV.setVisible(true);
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(26, 22, 462, 257);
 		
 		textField = new JTextField();
+		textField.setBounds(26, 285, 462, 21);
 		textField.setMargin(new Insets(1, 1, 1, 1));
 		textField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -64,30 +67,8 @@ public class Window {
 		});
 		textField.setColumns(10);
 		
-		JLabel label = new JLabel(">"); //$NON-NLS-1$
-		GroupLayout groupLayout = new GroupLayout(frmTheTextgameprojectV.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(label, GroupLayout.PREFERRED_SIZE, 8, GroupLayout.PREFERRED_SIZE)
-					.addGap(6)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(textField)
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE))
-					.addContainerGap(282, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(22)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 257, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(label)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(124, Short.MAX_VALUE))
-		);
+		JLabel label = new JLabel(">");
+		label.setBounds(12, 281, 21, 28);
 		
 		textPane = new JTextPane();
 		textPane.setContentType("text/html"); //$NON-NLS-1$
@@ -97,7 +78,10 @@ public class Window {
 		textPane.setEditable(false);
 		scrollPane.setViewportView(textPane);
 		scrollPane.setHorizontalScrollBarPolicy(31);
-		frmTheTextgameprojectV.getContentPane().setLayout(groupLayout);
+		frmTheTextgameprojectV.getContentPane().setLayout(null);
+		frmTheTextgameprojectV.getContentPane().add(label);
+		frmTheTextgameprojectV.getContentPane().add(textField);
+		frmTheTextgameprojectV.getContentPane().add(scrollPane);
 	}
 	public void addText(String inhalt){
 		try {
