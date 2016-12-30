@@ -11,9 +11,9 @@ public class SqlTools {
 		Connection c = null;
 		File path;
 		
-		Class.forName("org.sqlite.JDBC");
-		path = new File(MainMenu.getPath(), "rooms.db");
-		c = DriverManager.getConnection("jdbc:sqlite:"+path);
+		Class.forName("org.sqlite.JDBC").newInstance();
+		path = new File("data/rooms.db");
+		c = DriverManager.getConnection("jdbc:sqlite::resource:rooms.db");
 		return c;
 	}
 }

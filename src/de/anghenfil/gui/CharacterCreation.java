@@ -113,7 +113,7 @@ public class CharacterCreation {
 		JLabel lblRasse = new JLabel(Messages.getString("CharCre.race")); //$NON-NLS-1$
 		lblRasse.setFont(new Font("Tahoma", Font.PLAIN, 13)); //$NON-NLS-1$
 		
-		JList list = new JList();
+		final JList list = new JList();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setModel(new AbstractListModel() {
 			String[] values = new String[] {Messages.getString("CharCre.human"), Messages.getString("CharCre.zombie"), Messages.getString("CharCre.sidekick")}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
@@ -125,7 +125,7 @@ public class CharacterCreation {
 			}
 		});
 		
-		JList list_1 = new JList();
+		final JList list_1 = new JList();
 		list_1.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 				//TODO: Unblock skilling if professioen was selected

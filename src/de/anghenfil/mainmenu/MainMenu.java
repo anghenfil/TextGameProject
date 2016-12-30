@@ -24,14 +24,9 @@ public class MainMenu {
 	
 	public static void main(String[] args) {
 		Path save = Paths.get(PATH);
-		File srcDir = new File("data/"); //$NON-NLS-1$
-		if(!Files.exists(save)){
-			try{
-				FileUtils.copyDirectory(srcDir, destDir);
-			}catch(IOException e){
-					TD.error(Messages.getString("Error.cantcopy")+e); //$NON-NLS-1$
-					System.exit(0);
-			}
+		File srcDir = new File("data"); //$NON-NLS-1$
+		if(!destDir.exists()){
+		destDir.mkdir();
 		}
 			createnew = UserManager.checkUserData(); //Check if User file already exists
 			if(createnew){ //If new user needed
