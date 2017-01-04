@@ -322,8 +322,10 @@ public class CharacterCreation {
 					user.setProfession(profession);
 					user.setHealth(df_hp);
 					user.setBonus_health(bonus_hp);
+					user.setMaxHealthPoints(df_hp);
 					user.setAp(df_ap);
 					user.setBonus_ap(bonus_ap);
+					user.setMaxActionPoints(df_ap);
 					user.setSpeed(df_speed);
 					user.setBonusSpeed(bonus_speed);
 					user.setEloquence(df_eloquence);

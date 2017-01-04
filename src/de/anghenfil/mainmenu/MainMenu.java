@@ -23,8 +23,6 @@ public class MainMenu {
 	static Locale locale = new Locale("de", "DE"); //CHANGE LANGUAGE HERE //$NON-NLS-1$ //$NON-NLS-2$
 	
 	public static void main(String[] args) {
-		Path save = Paths.get(PATH);
-		File srcDir = new File("data"); //$NON-NLS-1$
 		if(!destDir.exists()){
 		destDir.mkdir();
 		}

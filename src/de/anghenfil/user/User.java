@@ -17,8 +17,10 @@ public class User implements Serializable{
 	String race; //Character race
 	int healthPoints; //Actual Health
 	int bonusHealth;
+	int maxHealthPoints = 0;
 	int actionPoints; //Action Points -> = mana
 	int bonusActionPoints;
+	int maxActionPoints = 0;
 	int actRoom = 1; //Room where the player is
 	int speed; //Characters speed
 	int bonusSpeed;
@@ -80,6 +82,30 @@ public class User implements Serializable{
 	}
 	public int getActionPoints() {
 		return actionPoints;
+	}
+	public int getMaxHealthPoints() {
+		return maxHealthPoints;
+	}
+	public void setMaxHealthPoints(int maxHealthPoints) {
+		try {
+			saveUser();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.maxHealthPoints = maxHealthPoints;
+	}
+	public int getMaxActionPoints() {
+		return maxActionPoints;
+	}
+	public void setMaxActionPoints(int maxActionPoints) {
+		try {
+			saveUser();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.maxActionPoints = maxActionPoints;
 	}
 	public void setActionPoints(int actionPoints) {
 		this.actionPoints = actionPoints;
