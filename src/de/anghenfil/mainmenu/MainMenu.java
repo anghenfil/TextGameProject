@@ -2,19 +2,9 @@ package de.anghenfil.mainmenu;
 import de.anghenfil.user.*;
 import de.anghenfil.gui.CharacterCreation;
 import de.anghenfil.maingame.MainGame;
-import de.anghenfil.messages.Messages;
-
 import java.awt.EventQueue;
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Locale;
-import java.util.ResourceBundle;
-
-import org.apache.commons.io.FileUtils;
-import de.anghenfil.textdesign.*;
 
 public class MainMenu {
 	public static final String PATH = System.getProperty("user.home")+"/AppData/Roaming/TextGameProject"; //$NON-NLS-1$ //$NON-NLS-2$

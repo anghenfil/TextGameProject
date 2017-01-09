@@ -4,8 +4,6 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-import de.anghenfil.mainmenu.MainMenu;
-
 public class SqlTools {
 	public static Connection getConnection() throws Exception{
 		Connection c = null;

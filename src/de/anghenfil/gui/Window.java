@@ -5,16 +5,10 @@ import javax.swing.JFrame;
 import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
 import de.anghenfil.maingame.MainControl;
-import de.anghenfil.maingame.MainGame;
-import de.anghenfil.mainmenu.MainMenu;
 import de.anghenfil.messages.Messages;
 import de.anghenfil.textdesign.TD;
 import de.anghenfil.user.User;

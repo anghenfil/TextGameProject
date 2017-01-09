@@ -75,19 +75,11 @@ public class CharacterCreation {
 	private int bonus_eloquence = 0;
 	private int bonus_charm = 0;
 	private int bonus_intelligence = 0;
-	/**
-	 * Launch the application.
-	 */
-	/**
-	 * Create the application.
-	 */
+
 	public CharacterCreation() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frmTheTextgameproject.setIconImage(Toolkit.getDefaultToolkit().getImage(CharacterCreation.class.getResource("/TGP Test.png"))); //$NON-NLS-1$
 		frmTheTextgameproject.setTitle(Messages.getString("General.gametitel")); //$NON-NLS-1$
@@ -113,19 +105,20 @@ public class CharacterCreation {
 		JLabel lblRasse = new JLabel(Messages.getString("CharCre.race")); //$NON-NLS-1$
 		lblRasse.setFont(new Font("Tahoma", Font.PLAIN, 13)); //$NON-NLS-1$
 		
-		final JList list = new JList();
+		final JList<String> list = new JList<String>();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		list.setModel(new AbstractListModel() {
+		list.setModel(new AbstractListModel<String>() {
+			private static final long serialVersionUID = -8700291457406697361L;
 			String[] values = new String[] {Messages.getString("CharCre.human"), Messages.getString("CharCre.zombie"), Messages.getString("CharCre.sidekick")}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			public int getSize() {
 				return values.length;
 			}
-			public Object getElementAt(int index) {
+			public String getElementAt(int index) {
 				return values[index];
 			}
 		});
 		
-		final JList list_1 = new JList();
+		final JList<String> list_1 = new JList<String>();
 		list_1.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 				//TODO: Unblock skilling if professioen was selected
@@ -155,12 +148,13 @@ public class CharacterCreation {
 				table.getModel().setValueAt(df_intelligence, 6, 1);
 			}
 		});
-		list_1.setModel(new AbstractListModel() {
+		list_1.setModel(new AbstractListModel<String>() {
+			private static final long serialVersionUID = 3483181078970416957L;
 			String[] values = new String[] {Messages.getString("CharCre.student"), Messages.getString("CharCre.doc"), Messages.getString("CharCre.author")}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			public int getSize() {
 				return values.length;
 			}
-			public Object getElementAt(int index) {
+			public String getElementAt(int index) {
 				return values[index];
 			}
 		});
@@ -188,6 +182,7 @@ public class CharacterCreation {
 				"", Messages.getString("CharCre.basic"), Messages.getString("CharCre.bonuspoints"), Messages.getString("CharCre.total") //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 			}
 		) {
+			private static final long serialVersionUID = 8723785523367306737L;
 			boolean[] columnEditables = new boolean[] {
 				false, false, false, false
 			};
