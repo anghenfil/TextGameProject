@@ -1,4 +1,4 @@
-package de.anghenfil.room;
+	package de.anghenfil.room;
 
 import de.anghenfil.gui.Window;
 import de.anghenfil.maingame.MainGame;
@@ -13,13 +13,14 @@ public class RoomScripts{
 		case 1:
 			if(input.length <= 1){
 				window.addText(Messages.getString("Error.whattoinspect")); //$NON-NLS-1$
+				//TODO: use error method
 			}else{
 				String string = input[1];
-				if (Messages.getString("RoomScript.Bookshelf").equals(string) || Messages.getString("RoomScript.Bookshelfs").equals(string)) {
+				if (Messages.getString("RoomScript.Bookshelf").toLowerCase().equals(string) || Messages.getString("RoomScript.Bookshelfs").toLowerCase().equals(string)) {
 					window.addText(Messages.getString("RoomScript.Bookshelfdescription")); //$NON-NLS-1$
-				} else if (Messages.getString("RoomScript.pendulumclock").equals(string)) {
+				} else if (Messages.getString("RoomScript.pendulumclock").toLowerCase().equals(string)) {
 					window.addText(Messages.getString("RoomScript.pendulumclockdescription")); //$NON-NLS-1$
-				} else if (Messages.getString("RoomScript.desk").equals(string)) {
+				} else if (Messages.getString("RoomScript.desk").toLowerCase().equals(string)) {
 					window.addText(Messages.getString("RoomScript.deskdescription")); //$NON-NLS-1$
 				} else {
 					window.addText(Messages.getString("Error.cantinspect")); //$NON-NLS-1$
