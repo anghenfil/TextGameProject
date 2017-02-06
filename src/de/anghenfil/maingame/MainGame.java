@@ -15,9 +15,11 @@ public class MainGame {
 		EventQueue.invokeLater(new Runnable() { //Start GUI
 			public void run() {
 				try {
+					user = UserManager.loadUser();
+					
 					window = new Window();
 					window.initialize();
-					user = UserManager.loadUser();
+					
 					room = new Room();
 					room = room.loadRoom(user.getAct_room()); //Load last visited Room from User object
 					TD.headline(room.getRoomName());

@@ -10,6 +10,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 import de.anghenfil.maingame.MainControl;
+import de.anghenfil.maingame.MainGame;
 import de.anghenfil.messages.Messages;
 import de.anghenfil.textdesign.TD;
 import de.anghenfil.user.User;
@@ -33,6 +34,7 @@ public class Window {
 	private HTMLDocument doc = new HTMLDocument();
 	private JProgressBar hpBar = new JProgressBar();
 	private JProgressBar apBar = new JProgressBar();
+	private User user = MainGame.getUser();
 	/**
 	 * Launch the application.
 	 */
@@ -53,6 +55,7 @@ public class Window {
 		frmTheTextgameprojectV.setBounds(100, 100, 686, 366);
 		frmTheTextgameprojectV.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmTheTextgameprojectV.setVisible(true);
+		frmTheTextgameprojectV.setResizable(false);
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(26, 22, 462, 257);
 		
@@ -81,23 +84,25 @@ public class Window {
 		textPane.setEditable(false);
 		scrollPane.setViewportView(textPane);
 		scrollPane.setHorizontalScrollBarPolicy(31);
+		scrollPane.setAutoscrolls(true);
+		
 		frmTheTextgameprojectV.getContentPane().setLayout(null);
 		frmTheTextgameprojectV.getContentPane().add(label);
 		frmTheTextgameprojectV.getContentPane().add(textField);
 		frmTheTextgameprojectV.getContentPane().add(scrollPane);
 		
 		JLabel lblHp = new JLabel(Messages.getString("MainGame.lblHp.text")); //$NON-NLS-1$
-		lblHp.setBounds(498, 22, 105, 14);
+		lblHp.setBounds(498, 22, 125, 14);
 		frmTheTextgameprojectV.getContentPane().add(lblHp);
-		
+		frmTheTextgameprojectV.getContentPane().add(apBar);
 		apBar.setBounds(498, 79, 146, 14);
-		User user = UserManager.loadUser();
 		apBar.setMaximum(user.getMaxActionPoints());
 		apBar.setValue(user.getActionPoints());
-		frmTheTextgameprojectV.getContentPane().add(apBar);
+		apBar.setStringPainted(true);
+		apBar.setString(user.getActionPoints() + " " + Messages.getString("MainGame.points"));
 		
 		JLabel lblap = new JLabel(Messages.getString("MainGame.lblap.text")); //$NON-NLS-1$
-		lblap.setBounds(498, 64, 105, 14);
+		lblap.setBounds(498, 64, 125, 14);
 		frmTheTextgameprojectV.getContentPane().add(lblap);
 		
 		hpBar.setBounds(498, 81, 146, 14);
@@ -106,17 +111,15 @@ public class Window {
 		hpBar.setMaximum(user.getMaxHealthPoints());
 		hpBar.setValue(user.getHealthPoints());
 		hpBar.setStringPainted(true);
+		hpBar.setString(user.getHealthPoints() + " " + Messages.getString("MainGame.points"));
 	}
 	public void updateHpBar(int hp){
 		hpBar.setValue(hp);
-		hpBar.setString(hp+""+Messages.getString("MainGame.hpbar.string"));
-		//hpBar.invalidate();
-		//frmTheTextgameprojectV.getContentPane().revalidate();
-		//JOptionPane.showMessageDialog(null, ""+hp);
+		hpBar.setString(user.getHealthPoints() + " " + Messages.getString("MainGame.points"));
 	}
 	public void updateApBar(int ap){
 		apBar.setValue(ap);
-		
+		apBar.setString(user.getActionPoints() + " " + Messages.getString("MainGame.points"));
 	}
 	public void addText(String inhalt){
 		try {
