@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import javax.swing.SwingUtilities;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
@@ -20,6 +21,7 @@ import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.Insets;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 
 public class Window {
@@ -84,31 +86,37 @@ public class Window {
 		frmTheTextgameprojectV.getContentPane().add(textField);
 		frmTheTextgameprojectV.getContentPane().add(scrollPane);
 		
-		JLabel lblHp = new JLabel(Messages.getString("Window.lblHp.text")); //$NON-NLS-1$
+		JLabel lblHp = new JLabel(Messages.getString("MainGame.lblHp.text")); //$NON-NLS-1$
 		lblHp.setBounds(498, 22, 105, 14);
 		frmTheTextgameprojectV.getContentPane().add(lblHp);
 		
-		hpBar.setBounds(498, 79, 146, 14);
+		apBar.setBounds(498, 79, 146, 14);
 		User user = UserManager.loadUser();
-		hpBar.setMaximum(user.getMaxHealthPoints());
-		hpBar.setValue(user.getHealthPoints());
-		frmTheTextgameprojectV.getContentPane().add(hpBar);
+		apBar.setMaximum(user.getMaxActionPoints());
+		apBar.setValue(user.getActionPoints());
+		frmTheTextgameprojectV.getContentPane().add(apBar);
 		
-		JLabel lblap = new JLabel(Messages.getString("Window.lblwindowlblaptext.text")); //$NON-NLS-1$
+		JLabel lblap = new JLabel(Messages.getString("MainGame.lblap.text")); //$NON-NLS-1$
 		lblap.setBounds(498, 64, 105, 14);
 		frmTheTextgameprojectV.getContentPane().add(lblap);
 		
-		apBar.setBounds(498, 81, 146, 14);
-		frmTheTextgameprojectV.getContentPane().add(apBar);
-		apBar.setBounds(498, 39, 146, 14);
-		apBar.setMaximum(user.getMaxActionPoints());
-		apBar.setValue(user.getActionPoints());
+		hpBar.setBounds(498, 81, 146, 14);
+		frmTheTextgameprojectV.getContentPane().add(hpBar);
+		hpBar.setBounds(498, 39, 146, 14);
+		hpBar.setMaximum(user.getMaxHealthPoints());
+		hpBar.setValue(user.getHealthPoints());
+		hpBar.setStringPainted(true);
 	}
 	public void updateHpBar(int hp){
 		hpBar.setValue(hp);
+		hpBar.setString(hp+""+Messages.getString("MainGame.hpbar.string"));
+		//hpBar.invalidate();
+		//frmTheTextgameprojectV.getContentPane().revalidate();
+		//JOptionPane.showMessageDialog(null, ""+hp);
 	}
 	public void updateApBar(int ap){
 		apBar.setValue(ap);
+		
 	}
 	public void addText(String inhalt){
 		try {

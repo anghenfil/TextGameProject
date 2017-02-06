@@ -311,22 +311,7 @@ public class CharacterCreation {
 					}
 				}else{
 					//TODO: Save points too
-					User user = new User();
-					user.setName(name);
-					user.setRace(race);
-					user.setProfession(profession);
-					user.setHealth(df_hp);
-					user.setBonus_health(bonus_hp);
-					user.setMaxHealthPoints(df_hp);
-					user.setAp(df_ap);
-					user.setBonus_ap(bonus_ap);
-					user.setMaxActionPoints(df_ap);
-					user.setSpeed(df_speed);
-					user.setBonusSpeed(bonus_speed);
-					user.setEloquence(df_eloquence);
-					user.setBonusEloquence(bonus_eloquence);
-					user.setCharm(df_charm);
-					user.setBonusCharm(bonus_charm);
+					User user = new User(name, profession, race);
 					try {
 						user.saveUser();
 					} catch (IOException e1) {

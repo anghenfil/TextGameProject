@@ -7,30 +7,60 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import de.anghenfil.maingame.MainGame;
 import de.anghenfil.mainmenu.MainMenu;
+import de.anghenfil.messages.Messages;
 
 public class User implements Serializable{
 
 	private static final long serialVersionUID = -6159905496838092464L;
-	String name; //Character Name
+	String name = "unset"; //Character Name
 	String profession; //Character Class
 	String race; //Character race
-	int healthPoints; //Actual Health
-	int bonusHealth;
-	int maxHealthPoints = 0;
+	int healthPoints; //Actual health
+	int bonusHealth = 0;
+	int maxHealthPoints; //Max health
 	int actionPoints; //Action Points -> = mana
-	int bonusActionPoints;
-	int maxActionPoints = 0;
+	int bonusActionPoints = 0;
+	int maxActionPoints;
 	int actRoom = 1; //Room where the player is
 	int speed; //Characters speed
-	int bonusSpeed;
+	int bonusSpeed = 0;
 	int eloquence;
-	int bonusEloquence;
-	int charm;
-	int bonusCharm;
-	int intelligence;
+	int bonusEloquence = 0;
+	int charm = 100;
+	int bonusCharm = 0;
+	int intelligence = 100;
 	ArrayList<Integer> items = new ArrayList<Integer>();
 	ArrayList<Integer> brackets = new ArrayList<Integer>();
+	
+	public User(String name, String profession, String race){
+		this.name = name;
+		this.profession = profession;
+		this.race = race;
+		
+		if(profession == Messages.getString("CharCre.author")){
+			maxHealthPoints = 80;
+			maxActionPoints = 100;
+			speed = 80;
+			eloquence = 150;
+		}else if(profession == Messages.getString("CharCre.student")){
+			maxHealthPoints = 80;
+			maxActionPoints = 80;
+			speed = 150;
+			eloquence = 120;
+		}else if(profession == Messages.getString("CharCre.doc")){
+			maxHealthPoints = 100;
+			maxActionPoints = 120;
+			speed = 80;
+			eloquence = 80;
+		}else{
+			//TODO: Error Message
+		}
+		healthPoints = maxHealthPoints;
+		actionPoints = maxActionPoints;
+	}
+	
 	public String getProfession() {
 		return profession;
 	}
@@ -266,6 +296,7 @@ public class User implements Serializable{
 	}
 	public void setHealth(int health) {
 		this.healthPoints = health;
+		MainGame.getWindow().updateHpBar(health);
 		try {
 			saveUser();
 		} catch (IOException e) {
@@ -278,6 +309,7 @@ public class User implements Serializable{
 	}
 	public void setAp(int ap) {
 		this.actionPoints = ap;
+		MainGame.getWindow().updateApBar(ap);
 		try {
 			saveUser();
 		} catch (IOException e) {

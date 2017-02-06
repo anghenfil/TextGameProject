@@ -27,7 +27,11 @@ public class MainControl {
 				commandGehe(window, input, room);
 			} else if (Messages.getString("MainControl.inspect").equals(string)) {
 				RoomScripts.onInspection(room.getRoomID(), input, window);
-			} else {
+			} else if ("devcsethp".equals(string)){
+				MainGame.getUser().setHealth(Integer.parseInt(input[1]));
+				
+				window.addText("Changed HP.");
+			}else {
 				TD.error();
 			}
 	}
