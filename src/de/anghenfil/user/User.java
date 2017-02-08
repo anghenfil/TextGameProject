@@ -31,6 +31,30 @@ public class User implements Serializable{
 	int charm = 100;
 	int bonusCharm = 0;
 	int intelligence = 100;
+	int xp = 0;
+	int xpborder = 1000;
+	int level = 1;
+	public int getXp() {
+		return xp;
+	}
+
+	public void setXp(int xp) {
+		this.xp = xp;
+		checkLevel();
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void checkLevel() {
+		if(xp >= xpborder){
+			while(xp>= xpborder){
+				xp = xp - xpborder;
+				level ++;
+			}
+		}
+	}
 	ArrayList<Integer> items = new ArrayList<Integer>();
 	ArrayList<Integer> brackets = new ArrayList<Integer>();
 	

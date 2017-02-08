@@ -24,6 +24,18 @@ import java.awt.Insets;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.UIManager;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 public class Window {
 
@@ -35,6 +47,9 @@ public class Window {
 	private JProgressBar hpBar = new JProgressBar();
 	private JProgressBar apBar = new JProgressBar();
 	private User user = MainGame.getUser();
+	private JLabel level;
+	private JButton settingGear;
+	private JLabel cname;
 	/**
 	 * Launch the application.
 	 */
@@ -52,7 +67,7 @@ public class Window {
 		frmTheTextgameprojectV = new JFrame();
 		frmTheTextgameprojectV.setPreferredSize(new Dimension(1280, 720));
 		frmTheTextgameprojectV.setTitle(Messages.getString("General.gametitel")); //$NON-NLS-1$
-		frmTheTextgameprojectV.setBounds(100, 100, 686, 366);
+		frmTheTextgameprojectV.setBounds(100, 100, 686, 352);
 		frmTheTextgameprojectV.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmTheTextgameprojectV.setVisible(true);
 		frmTheTextgameprojectV.setResizable(false);
@@ -60,6 +75,7 @@ public class Window {
 		scrollPane.setBounds(26, 22, 462, 257);
 		
 		textField = new JTextField();
+		textField.setFont(new Font("Times New Roman", Font.PLAIN, 11));
 		textField.setBounds(26, 285, 462, 21);
 		textField.setMargin(new Insets(1, 1, 1, 1));
 		textField.addActionListener(new ActionListener() {
@@ -77,6 +93,7 @@ public class Window {
 		label.setBounds(12, 281, 21, 28);
 		
 		textPane = new JTextPane();
+		textPane.setFont(new Font("Times New Roman", Font.PLAIN, 11));
 		textPane.setContentType("text/html"); //$NON-NLS-1$
 		textPane.setEditorKit(kit);
 		textPane.setDocument(doc);
@@ -86,32 +103,57 @@ public class Window {
 		scrollPane.setHorizontalScrollBarPolicy(31);
 		scrollPane.setAutoscrolls(true);
 		
-		frmTheTextgameprojectV.getContentPane().setLayout(null);
-		frmTheTextgameprojectV.getContentPane().add(label);
-		frmTheTextgameprojectV.getContentPane().add(textField);
-		frmTheTextgameprojectV.getContentPane().add(scrollPane);
-		
-		JLabel lblHp = new JLabel(Messages.getString("MainGame.lblHp.text")); //$NON-NLS-1$
-		lblHp.setBounds(498, 22, 125, 14);
-		frmTheTextgameprojectV.getContentPane().add(lblHp);
-		frmTheTextgameprojectV.getContentPane().add(apBar);
-		apBar.setBounds(498, 79, 146, 14);
+		JLabel lblHp = new JLabel(Messages.getString("MainGame.lblHp.text"));
+		lblHp.setBounds(498, 99, 125, 14);
+		apBar.setBounds(498, 156, 146, 14);
 		apBar.setMaximum(user.getMaxActionPoints());
 		apBar.setValue(user.getActionPoints());
 		apBar.setStringPainted(true);
 		apBar.setString(user.getActionPoints() + " " + Messages.getString("MainGame.points"));
 		
-		JLabel lblap = new JLabel(Messages.getString("MainGame.lblap.text")); //$NON-NLS-1$
-		lblap.setBounds(498, 64, 125, 14);
-		frmTheTextgameprojectV.getContentPane().add(lblap);
-		
-		hpBar.setBounds(498, 81, 146, 14);
-		frmTheTextgameprojectV.getContentPane().add(hpBar);
-		hpBar.setBounds(498, 39, 146, 14);
+		JLabel lblap = new JLabel(Messages.getString("MainGame.lblap.text"));
+		lblap.setBounds(498, 141, 125, 14);
+		hpBar.setBounds(498, 116, 146, 14);
 		hpBar.setMaximum(user.getMaxHealthPoints());
 		hpBar.setValue(user.getHealthPoints());
 		hpBar.setStringPainted(true);
 		hpBar.setString(user.getHealthPoints() + " " + Messages.getString("MainGame.points"));
+		frmTheTextgameprojectV.getContentPane().setLayout(null);
+		frmTheTextgameprojectV.getContentPane().add(scrollPane);
+		frmTheTextgameprojectV.getContentPane().add(textField);
+		frmTheTextgameprojectV.getContentPane().add(label);
+		frmTheTextgameprojectV.getContentPane().add(hpBar);
+		frmTheTextgameprojectV.getContentPane().add(lblap);
+		frmTheTextgameprojectV.getContentPane().add(apBar);
+		frmTheTextgameprojectV.getContentPane().add(lblHp);
+		
+		level = new JLabel("" + user.getLevel());
+		level.setHorizontalAlignment(SwingConstants.CENTER);
+		level.setBounds(570, 44, 34, 14);
+		frmTheTextgameprojectV.getContentPane().add(level);
+	
+		JLabel levelicon = new JLabel(Messages.getString("Window.lblNewLabel.text")); //$NON-NLS-1$
+		levelicon.setIcon(new ImageIcon(Window.class.getResource("/circle-50p.png")));
+		levelicon.setBounds(561, 22, 50, 57);
+		frmTheTextgameprojectV.getContentPane().add(levelicon);
+		
+		settingGear = new JButton("");
+		settingGear.setRequestFocusEnabled(false);
+		settingGear.setBorderPainted(false);
+		settingGear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		settingGear.setContentAreaFilled(false);
+		settingGear.setIcon(new ImageIcon(Window.class.getResource("/gear-25p.png")));
+		settingGear.setBounds(643, 291, 34, 28);
+		frmTheTextgameprojectV.getContentPane().add(settingGear);
+		
+		cname = new JLabel(user.getName());
+		cname.setHorizontalAlignment(SwingConstants.CENTER);
+		cname.setBackground(Color.LIGHT_GRAY);
+		cname.setBounds(547, 79, 79, 14);
+		frmTheTextgameprojectV.getContentPane().add(cname);
 	}
 	public void updateHpBar(int hp){
 		hpBar.setValue(hp);
@@ -129,6 +171,10 @@ public class Window {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	public void updateCharacterInfo(){
+		level.setText("" + user.getLevel());
+		cname.setText(user.getName() + "WORK");
 	}
 	public void exit(){
 		System.exit(1);
