@@ -5,7 +5,6 @@ import javax.swing.JFrame;
 import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
-import javax.swing.SwingUtilities;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
@@ -14,27 +13,17 @@ import de.anghenfil.maingame.MainGame;
 import de.anghenfil.messages.Messages;
 import de.anghenfil.textdesign.TD;
 import de.anghenfil.user.User;
-import de.anghenfil.user.UserManager;
-
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.Insets;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JButton;
-import javax.swing.UIManager;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.LineBorder;
 import java.awt.Color;
 
 public class Window {
@@ -75,7 +64,6 @@ public class Window {
 		scrollPane.setBounds(26, 22, 462, 257);
 		
 		textField = new JTextField();
-		textField.setFont(new Font("Times New Roman", Font.PLAIN, 11));
 		textField.setBounds(26, 285, 462, 21);
 		textField.setMargin(new Insets(1, 1, 1, 1));
 		textField.addActionListener(new ActionListener() {
@@ -99,6 +87,7 @@ public class Window {
 		textPane.setDocument(doc);
 		textPane.setMargin(new Insets(1, 1, 1, 1));
 		textPane.setEditable(false);
+	
 		scrollPane.setViewportView(textPane);
 		scrollPane.setHorizontalScrollBarPolicy(31);
 		scrollPane.setAutoscrolls(true);
@@ -154,6 +143,7 @@ public class Window {
 		cname.setBackground(Color.LIGHT_GRAY);
 		cname.setBounds(498, 79, 172, 14);
 		frmTheTextgameprojectV.getContentPane().add(cname);
+		
 	}
 	public void updateHpBar(int hp){
 		hpBar.setValue(hp);
