@@ -104,16 +104,16 @@ public class Window {
 		scrollPane.setAutoscrolls(true);
 		
 		JLabel lblHp = new JLabel(Messages.getString("MainGame.lblHp.text"));
-		lblHp.setBounds(498, 99, 125, 14);
-		apBar.setBounds(498, 156, 146, 14);
+		lblHp.setBounds(498, 107, 125, 14);
+		apBar.setBounds(498, 164, 146, 14);
 		apBar.setMaximum(user.getMaxActionPoints());
 		apBar.setValue(user.getActionPoints());
 		apBar.setStringPainted(true);
 		apBar.setString(user.getActionPoints() + " " + Messages.getString("MainGame.points"));
 		
 		JLabel lblap = new JLabel(Messages.getString("MainGame.lblap.text"));
-		lblap.setBounds(498, 141, 125, 14);
-		hpBar.setBounds(498, 116, 146, 14);
+		lblap.setBounds(498, 149, 125, 14);
+		hpBar.setBounds(498, 124, 146, 14);
 		hpBar.setMaximum(user.getMaxHealthPoints());
 		hpBar.setValue(user.getHealthPoints());
 		hpBar.setStringPainted(true);
@@ -129,12 +129,12 @@ public class Window {
 		
 		level = new JLabel("" + user.getLevel());
 		level.setHorizontalAlignment(SwingConstants.CENTER);
-		level.setBounds(570, 44, 34, 14);
+		level.setBounds(568, 44, 34, 14);
 		frmTheTextgameprojectV.getContentPane().add(level);
 	
 		JLabel levelicon = new JLabel(Messages.getString("Window.lblNewLabel.text")); //$NON-NLS-1$
 		levelicon.setIcon(new ImageIcon(Window.class.getResource("/circle-50p.png")));
-		levelicon.setBounds(561, 22, 50, 57);
+		levelicon.setBounds(559, 22, 50, 57);
 		frmTheTextgameprojectV.getContentPane().add(levelicon);
 		
 		settingGear = new JButton("");
@@ -152,13 +152,13 @@ public class Window {
 		cname = new JLabel(user.getName());
 		cname.setHorizontalAlignment(SwingConstants.CENTER);
 		cname.setBackground(Color.LIGHT_GRAY);
-		cname.setBounds(547, 79, 79, 14);
+		cname.setBounds(498, 79, 172, 14);
 		frmTheTextgameprojectV.getContentPane().add(cname);
 	}
 	public void updateHpBar(int hp){
 		hpBar.setValue(hp);
 		hpBar.setString(user.getHealthPoints() + " " + Messages.getString("MainGame.points"));
-	}
+	}	
 	public void updateApBar(int ap){
 		apBar.setValue(ap);
 		apBar.setString(user.getActionPoints() + " " + Messages.getString("MainGame.points"));
@@ -174,7 +174,7 @@ public class Window {
 	}
 	public void updateCharacterInfo(){
 		level.setText("" + user.getLevel());
-		cname.setText(user.getName() + "WORK");
+		cname.setText(user.getName());
 	}
 	public void exit(){
 		System.exit(1);
