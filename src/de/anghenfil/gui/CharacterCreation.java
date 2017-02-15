@@ -292,7 +292,6 @@ public class CharacterCreation {
 				errorsrc = UserManager.checkInput(name, free_points, race, profession); //Check Charakter Name, if free_points 0 and if race and class selected
 				
 				textField.setBackground(Color.WHITE);
-				//TODO: Label default swing color
 				list.setBackground(Color.WHITE);
 				list_1.setBackground(Color.WHITE);
 				
