@@ -1,5 +1,6 @@
 package de.anghenfil.mainmenu;
 import de.anghenfil.user.*;
+import de.anghenfil.de.log.LogManager;
 import de.anghenfil.gui.CharacterCreation;
 import de.anghenfil.maingame.MainGame;
 import java.awt.EventQueue;
@@ -14,23 +15,26 @@ public class MainMenu {
 	
 	public static void main(String[] args) {
 		if(!destDir.exists()){
-		destDir.mkdir();
+			destDir.mkdir();
 		}
-			createnew = UserManager.checkUserData(); //Check if User file already exists
-			if(createnew){ //If new user needed
-				EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						try {
-							CharacterCreation window = new CharacterCreation();
-							window.frmTheTextgameproject.setVisible(true);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
+		LogManager.checkLog();
+		LogManager.add("INFO", "Game started.");
+		
+		createnew = UserManager.checkUserData(); //Check if User file already exists
+		if(createnew){ //If new user needed
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						CharacterCreation window = new CharacterCreation();
+						window.frmTheTextgameproject.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
-				});
-			}else if(createnew == false){
-				MainGame.play(); //Start game
-			}
+				}
+			});
+		}else if(createnew == false){
+			MainGame.play(); //Start game
+		}
 	}
 	public static boolean getCreatenew() {
 		return createnew;
