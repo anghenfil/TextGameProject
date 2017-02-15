@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import de.anghenfil.de.log.LogManager;
 import de.anghenfil.maingame.MainGame;
 import de.anghenfil.mainmenu.MainMenu;
 import de.anghenfil.messages.Messages;
@@ -79,7 +80,7 @@ public class User implements Serializable{
 			speed = 80;
 			eloquence = 80;
 		}else{
-			//TODO: Error Message
+			LogManager.add("CRIT", new Exception("Can't find profession "+profession+"."));
 		}
 		healthPoints = maxHealthPoints;
 		actionPoints = maxActionPoints;
@@ -93,8 +94,7 @@ public class User implements Serializable{
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 	}
 	public String getRace() {
@@ -106,8 +106,7 @@ public class User implements Serializable{
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 	}
 	public int getHealthPoints() {
@@ -118,8 +117,7 @@ public class User implements Serializable{
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 	}
 	public int getBonusHealth() {
@@ -130,8 +128,7 @@ public class User implements Serializable{
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 	}
 	public int getActionPoints() {
@@ -144,8 +141,7 @@ public class User implements Serializable{
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 		this.maxHealthPoints = maxHealthPoints;
 	}
@@ -156,8 +152,7 @@ public class User implements Serializable{
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 		this.maxActionPoints = maxActionPoints;
 	}
@@ -166,8 +161,7 @@ public class User implements Serializable{
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 	}
 	public int getBonusActionPoints() {
@@ -178,8 +172,7 @@ public class User implements Serializable{
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 	}
 	public int getActRoom() {
@@ -190,8 +183,7 @@ public class User implements Serializable{
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 	}
 	public int getSpeed() {
@@ -202,8 +194,7 @@ public class User implements Serializable{
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 	}
 	public int getBonusSpeed() {
@@ -215,8 +206,7 @@ public class User implements Serializable{
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 	}
 	public int getEloquence() {
@@ -227,8 +217,7 @@ public class User implements Serializable{
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 	}
 	public int getBonusEloquence() {
@@ -239,8 +228,7 @@ public class User implements Serializable{
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 	}
 	public int getCharm() {
@@ -251,8 +239,7 @@ public class User implements Serializable{
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 	}
 	public int getBonusCharm() {
@@ -263,8 +250,7 @@ public class User implements Serializable{
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 	}
 	public int getIntelligence() {
@@ -275,20 +261,18 @@ public class User implements Serializable{
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 	}
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) { //TODO: Save user every time, something changed
+	public void setName(String name) {
 		this.name = name;
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 	}
 	public int getBonus_health() {
@@ -299,8 +283,7 @@ public class User implements Serializable{
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 	}
 	public int getBonus_ap() {
@@ -311,8 +294,7 @@ public class User implements Serializable{
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 	}
 	public int getHealth() {
@@ -324,8 +306,7 @@ public class User implements Serializable{
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 	}
 	public int getAp() {
@@ -337,8 +318,7 @@ public class User implements Serializable{
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 	}
 	public int getAct_room() {
@@ -349,8 +329,7 @@ public class User implements Serializable{
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 	}
 	public void saveUser() throws IOException{
@@ -375,8 +354,7 @@ public class User implements Serializable{
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 	}
 	public void removeItem(int itemID){
@@ -384,8 +362,7 @@ public class User implements Serializable{
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 	}
 	public boolean hasBracket(int bracketID){
@@ -402,8 +379,7 @@ public class User implements Serializable{
 		try {
 			saveUser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.add("CRIT", e);
 		}
 	}
 	
