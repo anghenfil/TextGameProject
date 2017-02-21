@@ -8,7 +8,7 @@ import de.anghenfil.textdesign.TD;
 
 public class MainControl {
 	static boolean exit = false;
-	static String rawinput;
+	//static String rawinput;
 	static String[] input;
 	public static void checkInputs(String rawinput){
 			Window window = MainGame.getWindow();
